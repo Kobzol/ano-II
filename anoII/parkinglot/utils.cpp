@@ -1,7 +1,6 @@
 #include "utils.h"
 
 #include <fstream>
-#include <opencv2/opencv.hpp>
 
 std::vector<Place> loadGeometry(const std::string& filename)
 {
@@ -45,16 +44,26 @@ std::vector<std::string> loadPathFile(const std::string& filename)
 	return paths;
 }
 
-void trainDataSet(const std::vector<std::string>& paths, const std::vector<Place>& places, const std::vector<std::unique_ptr<Extractor>>& extractors,
-	int classIndex, std::vector<Example>& examples)
+void trainDataSet(const std::vector<std::string>& paths, const std::vector<Place>& places,
+	const std::vector<std::unique_ptr<Extractor>>& extractors, int classIndex,
+	std::vector<Example>& examples)
 {
-	for (auto& path : paths)
+#pragma omp parallel for
+	for (int i = 0; i < paths.size(); i++)
 	{
+		auto& path = paths[i];
 		cv::Mat trainingImage = cv::imread(path, 1);
 		std::vector<cv::Mat> frames = extractParkingPlaces(places, trainingImage);
+
+		std::vector<Example> localExamples;
 		for (auto& frame: frames)
 		{
-			examples.push_back(generateExample(extractors, frame, classIndex));
+			localExamples.push_back(generateExample(extractors, frame, classIndex));
+		}
+
+#pragma omp critical
+		{
+			examples.insert(examples.end(), localExamples.begin(), localExamples.end());
 		}
 
 		std::cerr << "Trained from " << path << std::endl;
@@ -63,7 +72,6 @@ void trainDataSet(const std::vector<std::string>& paths, const std::vector<Place
 std::vector<cv::Mat> extractParkingPlaces(const std::vector<Place>& places, cv::Mat image)
 {
 	std::vector<cv::Mat> placeFrames;
-
 	for (int i = 0; i < places.size(); i++)
 	{
 		auto& place = places[i];
@@ -71,13 +79,13 @@ std::vector<cv::Mat> extractParkingPlaces(const std::vector<Place>& places, cv::
 		cv::Mat srcMat(4, 2, CV_32F);
 		cv::Mat outMat(158, 172, CV_8U, 3);
 		srcMat.at<float>(0, 0) = (float) place.x01;
-		srcMat.at<float>(0, 1) = (float)place.y01;
-		srcMat.at<float>(1, 0) = (float)place.x02;
-		srcMat.at<float>(1, 1) = (float)place.y02;
-		srcMat.at<float>(2, 0) = (float)place.x03;
-		srcMat.at<float>(2, 1) = (float)place.y03;
-		srcMat.at<float>(3, 0) = (float)place.x04;
-		srcMat.at<float>(3, 1) = (float)place.y04;
+		srcMat.at<float>(0, 1) = (float) place.y01;
+		srcMat.at<float>(1, 0) = (float) place.x02;
+		srcMat.at<float>(1, 1) = (float) place.y02;
+		srcMat.at<float>(2, 0) = (float) place.x03;
+		srcMat.at<float>(2, 1) = (float) place.y03;
+		srcMat.at<float>(3, 0) = (float) place.x04;
+		srcMat.at<float>(3, 1) = (float) place.y04;
 
 		cv::Mat destMat(4, 2, CV_32F);
 		destMat.at<float>(0, 0) = 0.0f;
@@ -91,7 +99,7 @@ std::vector<cv::Mat> extractParkingPlaces(const std::vector<Place>& places, cv::
 
 		cv::Mat H = cv::findHomography(srcMat, destMat, 0);
 		cv::warpPerspective(image, outMat, H, cv::Size(158, 172));
-		
+
 		placeFrames.push_back(outMat);
 	}
 
@@ -99,7 +107,7 @@ std::vector<cv::Mat> extractParkingPlaces(const std::vector<Place>& places, cv::
 }
 Example generateExample(const std::vector<std::unique_ptr<Extractor>>& extractors, cv::Mat place, int classIndex)
 {
-	Example example(classIndex);
+	Example example(classIndex, place);
 	for (auto& extractor : extractors)
 	{
 		auto features = extractor->extract(place);
@@ -108,50 +116,84 @@ Example generateExample(const std::vector<std::unique_ptr<Extractor>>& extractor
 
 	return example;
 }
-cv::Ptr<cv::ml::SVM> trainSVM(std::vector<Example>& examples)
-{
-	cv::TermCriteria crit;
-	crit.epsilon = CV_TERMCRIT_EPS;
-	crit.maxCount = 2000;
-	crit.type = 1;
 
-	auto svm = cv::ml::SVM::create();
-	svm->setType(cv::ml::SVM::C_SVC);
-	svm->setKernel(cv::ml::SVM::RBF);
-	svm->setGamma(0.1);
-	svm->setC(2.0);
-	svm->setNu(0.1);
-	svm->setTermCriteria(crit);
-
-	cv::Mat trainingData(static_cast<int>(examples.size()), static_cast<int>(examples[0].features.size()), CV_32F);
-	std::vector<int> labels;
-	for (int i = 0; i < examples.size(); i++)
-	{
-		labels.push_back(examples[i].classIndex);
-		for (int j = 0; j < examples[i].features.size(); j++)
-		{
-			trainingData.at<float>(i, j) = examples[i].features[j];
-		}
-	}
-
-	svm->train(trainingData, cv::ml::SampleTypes::ROW_SAMPLE, labels);
-	return svm;
-}
-
-std::vector<int> predictSVM(cv::ml::SVM& svm, const std::vector<std::unique_ptr<Extractor>>& extractors, std::vector<cv::Mat>& frames)
+std::vector<int> predict(Classifier& classifier, const std::vector<std::unique_ptr<Extractor>>& extractors, std::vector<cv::Mat>& frames)
 {
 	std::vector<int> classes;
-
 	for (auto& frame: frames)
 	{
-		Example example = generateExample(extractors, frame, -1);
+		int value = 0;
+		if (classifier.supportsFeatures())
+		{
+			value = classifier.predict(generateExample(extractors, frame, -1).features);
+		}
+		else value = classifier.predict(frame);
 
-		float value = svm.predict(example.features);
-		classes.push_back(static_cast<int>(value));
+		classes.push_back(value);
 	}
 
 	return classes;
 }
+
+/*void convert_image(cv::Mat image,
+	int w,
+	int h,
+	std::vector<tiny_dnn::vec_t>& data)
+{
+	cv::cvtColor(image, image, CV_BGR2GRAY);
+
+	cv::Mat_<uint8_t> resized;
+	cv::resize(image, resized, cv::Size(w, h));
+
+	tiny_dnn::vec_t d;
+	std::transform(resized.begin(), resized.end(), std::back_inserter(d),
+		[=](uint8_t c) { return c; });
+	data.push_back(d);
+}
+std::unique_ptr<tiny_dnn::network<tiny_dnn::sequential>> trainDNN(std::vector<Example>& examples)
+{
+	using namespace tiny_dnn;
+
+	auto net = std::make_unique<network<sequential>>();
+	network<sequential>& netRef = *net;
+
+	netRef << convolutional_layer(32, 32, 5, 1, 6, padding::same) << tanh_layer()  // in:32x32x1, 5x5conv, 6fmaps
+		<< max_pooling_layer(32, 32, 6, 2) << tanh_layer()                // in:32x32x6, 2x2pooling
+		<< convolutional_layer(16, 16, 5, 6, 16, padding::same) << tanh_layer() // in:16x16x6, 5x5conv, 16fmaps
+		<< max_pooling_layer(16, 16, 16, 2) << tanh_layer()               // in:16x16x16, 2x2pooling
+		<< fully_connected_layer(8 * 8 * 16, 100) << tanh_layer()                       // in:8x8x16, out:100
+		<< fully_connected_layer(100, 10) << softmax_layer();                       // in:100 out:10
+
+	std::vector<vec_t> data;
+	std::vector<size_t> classes;
+
+	for (auto& example : examples)
+	{
+		convert_image(example.image, 32, 32, data);
+		classes.push_back(example.classIndex);
+	}
+
+	adagrad opt;
+	net->train<cross_entropy, adagrad>(opt, data, classes, 20, 5);
+	return net;
+}
+std::vector<int> predictDNN(tiny_dnn::network<tiny_dnn::sequential>& net, const std::vector<cv::Mat>& images)
+{
+	using namespace tiny_dnn;
+	std::vector<vec_t> data;
+	for (auto& image : images)
+	{
+		convert_image(image, 32, 32, data);
+	}
+
+	std::vector<int> classes;
+	for (auto& item : data)
+	{
+		classes.push_back(net.predict_max_value(item));
+	}
+	return classes;
+}*/
+
 cv::Mat markDetection(const std::vector<Place>& places, const std::vector<int>& classes, cv::Mat image)
 {
 	cv::Mat detected = image.clone();
@@ -162,7 +204,6 @@ cv::Mat markDetection(const std::vector<Place>& places, const std::vector<int>& 
 		auto& place = places[i];
 
 		cv::Scalar color(0.0f, classIndex == 0 ? 255.0f : 0.0f, classIndex == 1 ? 255.0f : 0.0f);
-		std::vector<cv::Point> points;
 		for (int i = 0; i < 4; i++)
 		{
 			int next = ((i + 1) * 2) % 8;

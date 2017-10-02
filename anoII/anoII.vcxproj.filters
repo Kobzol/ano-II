@@ -27,6 +27,21 @@
     <ClCompile Include="parkinglot\lot.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="parkinglot\classifier\svm_classifier.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="parkinglot\classifier\knn_classifier.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="parkinglot\classifier\classifier.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="parkinglot\classifier\nn_classifier.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="parkinglot\classifier\tinydnn_classifier.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="parkinglot\utils.h">
@@ -44,5 +59,1241 @@
     <ClInclude Include="parkinglot\extractor\sobel_extractor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\activations\activation_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\activations\elu_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\activations\leaky_relu_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\activations\relu_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\activations\selu_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\activations\sigmoid_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\activations\softmax_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\activations\softplus_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\activations\softsign_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\activations\tanh_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\activations\tanh_p1m2_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\core\framework\device.fwd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\core\framework\device.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\core\framework\op_kernel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\core\framework\program.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\core\framework\program_manager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\core\framework\tensor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\core\framework\tensor_utils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\core\kernels\avx_deconv2d_back_kernel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\core\kernels\avx_deconv2d_kernel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\core\kernels\avx_kernel_common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\core\kernels\conv2d_grad_op.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\core\kernels\conv2d_grad_op_avx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\core\kernels\conv2d_op.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\core\kernels\conv2d_op_avx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\core\kernels\conv2d_op_internal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\core\kernels\conv2d_op_libdnn.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\core\kernels\conv2d_op_nnpack.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\core\kernels\conv2d_op_opencl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\core\kernels\fully_connected_grad_op.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\core\kernels\fully_connected_op.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\core\kernels\fully_connected_op_avx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\core\kernels\fully_connected_op_internal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\core\kernels\fully_connected_op_nnpack.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\core\kernels\global_avepool_grad_op.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\core\kernels\global_avepool_op.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\core\kernels\global_avepool_op_avx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\core\kernels\global_avepool_op_internal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\core\kernels\maxpool_grad_op.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\core\kernels\maxpool_op.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\core\kernels\maxpool_op_avx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\core\kernels\maxpool_op_internal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\core\kernels\maxpool_op_nnpack.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\core\kernels\nnp_deconv2d_kernel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\core\kernels\recurrent_cell_grad_op.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\core\kernels\recurrent_cell_op.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\core\kernels\recurrent_cell_op_internal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\core\kernels\tiny_deconv2d_back_kernel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\core\kernels\tiny_deconv2d_kernel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\core\kernels\tiny_quantization_kernel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\core\kernels\tiny_quantized_conv2d_kernel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\core\kernels\tiny_quantized_deconv2d_kernel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\core\kernels\tiny_quantized_fully_connected_kernel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\core\kernels\tiny_quantized_matmul_kernel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\core\params\conv_params.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\core\params\deconv_params.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\core\params\fully_params.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\core\params\global_avepool_params.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\core\params\maxpool_params.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\core\params\params.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\core\params\recurrent_cell_params.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\core\backend.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\core\backend_avx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\core\backend_tiny.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\core\session.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\io\caffe\layer_factory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\io\caffe\layer_factory_impl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\io\cifar10_parser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\io\display.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\io\layer_factory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\io\mnist_parser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\layers\arithmetic_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\layers\average_pooling_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\layers\average_unpooling_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\layers\batch_normalization_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\layers\concat_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\layers\convolutional_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\layers\deconvolutional_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\layers\dropout_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\layers\fully_connected_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\layers\global_average_pooling_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\layers\input_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\layers\layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\layers\layers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\layers\linear_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\layers\lrn_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\layers\max_pooling_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\layers\max_unpooling_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\layers\partial_connected_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\layers\power_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\layers\quantized_convolutional_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\layers\quantized_deconvolutional_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\layers\quantized_fully_connected_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\layers\recurrent_cell_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\layers\slice_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\lossfunctions\loss_function.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\models\alexnet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\optimizers\optimizer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\util\aligned_allocator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\util\colored_print.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\util\deform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\util\deserialization_helper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\util\gradient_check.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\util\graph_visualizer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\util\image.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\util\macro.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\util\math_functions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\util\nn_error.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\util\parallel_for.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\util\product.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\util\random.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\util\serialization_functions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\util\serialization_helper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\util\serialization_layer_list.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\util\target_cost.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\util\util.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\util\weight_init.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\xtensor\xadapt.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\xtensor\xarray.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\xtensor\xassign.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\xtensor\xaxis_iterator.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\xtensor\xbroadcast.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\xtensor\xbuffer_adaptor.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\xtensor\xbuilder.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\xtensor\xcomplex.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\xtensor\xcontainer.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\xtensor\xcsv.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\xtensor\xeval.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\xtensor\xexception.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\xtensor\xexpression.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\xtensor\xfunction.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\xtensor\xfunctorview.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\xtensor\xgenerator.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\xtensor\xindexview.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\xtensor\xinfo.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\xtensor\xio.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\xtensor\xiterable.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\xtensor\xiterator.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\xtensor\xlayout.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\xtensor\xmath.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\xtensor\xmissing.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\xtensor\xnoalias.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\xtensor\xoffsetview.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\xtensor\xoperation.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\xtensor\xoptional.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\xtensor\xrandom.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\xtensor\xreducer.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\xtensor\xscalar.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\xtensor\xsemantic.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\xtensor\xslice.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\xtensor\xstorage.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\xtensor\xstridedview.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\xtensor\xstrides.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\xtensor\xtensor.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\xtensor\xtensor_config.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\xtensor\xtensor_forward.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\xtensor\xutils.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\xtensor\xvectorize.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\xtensor\xview.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\xtensor\xview_utils.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\activations\activation_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\activations\elu_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\activations\leaky_relu_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\activations\relu_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\activations\selu_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\activations\sigmoid_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\activations\softmax_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\activations\softplus_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\activations\softsign_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\activations\tanh_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\activations\tanh_p1m2_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\core\framework\device.fwd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\core\framework\device.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\core\framework\op_kernel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\core\framework\program.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\core\framework\program_manager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\core\framework\tensor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\core\framework\tensor_utils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\core\kernels\avx_deconv2d_back_kernel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\core\kernels\avx_deconv2d_kernel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\core\kernels\avx_kernel_common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\core\kernels\conv2d_grad_op.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\core\kernels\conv2d_grad_op_avx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\core\kernels\conv2d_op.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\core\kernels\conv2d_op_avx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\core\kernels\conv2d_op_internal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\core\kernels\conv2d_op_libdnn.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\core\kernels\conv2d_op_nnpack.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\core\kernels\conv2d_op_opencl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\core\kernels\fully_connected_grad_op.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\core\kernels\fully_connected_op.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\core\kernels\fully_connected_op_avx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\core\kernels\fully_connected_op_internal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\core\kernels\fully_connected_op_nnpack.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\core\kernels\global_avepool_grad_op.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\core\kernels\global_avepool_op.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\core\kernels\global_avepool_op_avx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\core\kernels\global_avepool_op_internal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\core\kernels\maxpool_grad_op.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\core\kernels\maxpool_op.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\core\kernels\maxpool_op_avx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\core\kernels\maxpool_op_internal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\core\kernels\maxpool_op_nnpack.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\core\kernels\nnp_deconv2d_kernel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\core\kernels\recurrent_cell_grad_op.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\core\kernels\recurrent_cell_op.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\core\kernels\recurrent_cell_op_internal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\core\kernels\tiny_deconv2d_back_kernel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\core\kernels\tiny_deconv2d_kernel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\core\kernels\tiny_quantization_kernel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\core\kernels\tiny_quantized_conv2d_kernel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\core\kernels\tiny_quantized_deconv2d_kernel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\core\kernels\tiny_quantized_fully_connected_kernel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\core\kernels\tiny_quantized_matmul_kernel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\core\params\conv_params.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\core\params\deconv_params.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\core\params\fully_params.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\core\params\global_avepool_params.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\core\params\maxpool_params.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\core\params\params.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\core\params\recurrent_cell_params.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\core\backend.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\core\backend_avx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\core\backend_tiny.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\core\session.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\io\caffe\layer_factory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\io\caffe\layer_factory_impl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\io\cifar10_parser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\io\display.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\io\layer_factory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\io\mnist_parser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\layers\arithmetic_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\layers\average_pooling_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\layers\average_unpooling_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\layers\batch_normalization_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\layers\concat_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\layers\convolutional_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\layers\deconvolutional_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\layers\dropout_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\layers\fully_connected_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\layers\global_average_pooling_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\layers\input_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\layers\layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\layers\layers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\layers\linear_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\layers\lrn_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\layers\max_pooling_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\layers\max_unpooling_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\layers\partial_connected_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\layers\power_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\layers\quantized_convolutional_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\layers\quantized_deconvolutional_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\layers\quantized_fully_connected_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\layers\recurrent_cell_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\layers\slice_layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\lossfunctions\loss_function.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\models\alexnet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\optimizers\optimizer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\util\aligned_allocator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\util\colored_print.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\util\deform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\util\deserialization_helper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\util\gradient_check.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\util\graph_visualizer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\util\image.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\util\macro.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\util\math_functions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\util\nn_error.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\util\parallel_for.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\util\product.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\util\random.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\util\serialization_functions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\util\serialization_helper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\util\serialization_layer_list.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\util\target_cost.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\util\util.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\util\weight_init.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\xtensor\xadapt.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\xtensor\xarray.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\xtensor\xassign.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\xtensor\xaxis_iterator.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\xtensor\xbroadcast.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\xtensor\xbuffer_adaptor.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\xtensor\xbuilder.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\xtensor\xcomplex.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\xtensor\xcontainer.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\xtensor\xcsv.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\xtensor\xeval.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\xtensor\xexception.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\xtensor\xexpression.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\xtensor\xfunction.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\xtensor\xfunctorview.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\xtensor\xgenerator.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\xtensor\xindexview.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\xtensor\xinfo.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\xtensor\xio.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\xtensor\xiterable.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\xtensor\xiterator.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\xtensor\xlayout.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\xtensor\xmath.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\xtensor\xmissing.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\xtensor\xnoalias.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\xtensor\xoffsetview.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\xtensor\xoperation.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\xtensor\xoptional.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\xtensor\xrandom.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\xtensor\xreducer.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\xtensor\xscalar.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\xtensor\xsemantic.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\xtensor\xslice.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\xtensor\xstorage.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\xtensor\xstridedview.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\xtensor\xstrides.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\xtensor\xtensor.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\xtensor\xtensor_config.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\xtensor\xtensor_forward.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\xtensor\xutils.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\xtensor\xvectorize.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\xtensor\xview.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\xtensor\xview_utils.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\config.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\network.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\node.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\nodes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\tiny_dnn\tiny_dnn.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\classifier\classifier.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\classifier\svm_classifier.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\classifier\knn_classifier.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\classifier\nn_classifier.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\archives\adapters.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\archives\binary.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\archives\json.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\archives\portable_binary.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\archives\xml.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\details\helpers.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\details\polymorphic_impl.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\details\polymorphic_impl_fwd.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\details\static_object.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\details\traits.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\details\util.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\external\rapidjson\error\en.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\external\rapidjson\error\error.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\external\rapidjson\internal\biginteger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\external\rapidjson\internal\diyfp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\external\rapidjson\internal\dtoa.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\external\rapidjson\internal\ieee754.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\external\rapidjson\internal\itoa.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\external\rapidjson\internal\meta.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\external\rapidjson\internal\pow10.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\external\rapidjson\internal\regex.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\external\rapidjson\internal\stack.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\external\rapidjson\internal\strfunc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\external\rapidjson\internal\strtod.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\external\rapidjson\internal\swap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\external\rapidjson\msinttypes\inttypes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\external\rapidjson\msinttypes\stdint.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\external\rapidjson\allocators.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\external\rapidjson\document.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\external\rapidjson\encodedstream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\external\rapidjson\encodings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\external\rapidjson\filereadstream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\external\rapidjson\filestream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\external\rapidjson\filewritestream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\external\rapidjson\fwd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\external\rapidjson\genericstream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\external\rapidjson\istreamwrapper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\external\rapidjson\memorybuffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\external\rapidjson\memorystream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\external\rapidjson\ostreamwrapper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\external\rapidjson\pointer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\external\rapidjson\prettywriter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\external\rapidjson\rapidjson.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\external\rapidjson\reader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\external\rapidjson\schema.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\external\rapidjson\stream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\external\rapidjson\stringbuffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\external\rapidjson\writer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\external\rapidxml\rapidxml.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\external\rapidxml\rapidxml_iterators.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\external\rapidxml\rapidxml_print.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\external\rapidxml\rapidxml_utils.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\external\base64.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\types\concepts\pair_associative_container.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\types\array.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\types\base_class.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\types\bitset.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\types\boost_variant.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\types\common.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\types\complex.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\types\deque.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\types\forward_list.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\types\functional.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\types\chrono.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\types\list.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\types\map.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\types\memory.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\types\polymorphic.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\types\queue.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\types\set.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\types\stack.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\types\string.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\types\tuple.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\types\unordered_map.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\types\unordered_set.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\types\utility.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\types\valarray.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\types\vector.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\access.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\cereal.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\tiny-dnn\cereal\macros.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\classifier\tinydnn_classifier.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="parkinglot\tiny-dnn\cereal\external\rapidxml\manual.html" />
   </ItemGroup>
 </Project>

@@ -18,7 +18,7 @@ void cviko1()
 	cv::VideoCapture cap(0);
 	//cap.set(CV_CAP_PROP_FRAME_WIDTH, 720);
 
-	if (!classifier.load("../opencv/etc/haarcascades/haarcascade_eye.xml"))
+	if (!classifier.load("../opencv/etc/lbpcascades/lbpcascade_frontalface.xml"))
 	{
 		exit(1);
 	}

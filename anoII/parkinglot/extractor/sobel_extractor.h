@@ -2,33 +2,38 @@
 
 #include "extractor.h"
 
+// morphological gradient
 class SobelExtractor : public Extractor
 {
 public:
+	explicit SobelExtractor(uchar threshold): threshold(threshold)
+	{
+
+	}
+
 	std::vector<float> extract(cv::Mat image) override
 	{
-		cv::cvtColor(image, image, CV_BGR2GRAY);	// convert to grayscale
-		cv::medianBlur(image, image, 3);			// blur
+		const int size = 80;
+
+		cv::Mat resized;
+		cv::cvtColor(image, image, CV_BGR2GRAY);
+		cv::resize(image, resized, cv::Size(size, size));
+		cv::medianBlur(resized, resized, 3);
+
+		cv::Mat sobel = this->sobel(resized);
+		cv::medianBlur(sobel, sobel, 3);
 		
-		std::vector<float> features = {
-			this->extractPixels(this->sobel(image), 64)
-		};
+		std::vector<float> features;
+		features.push_back(this->extractPixels(sobel, this->threshold));
 
-		/*int width = std::ceil(image.cols / 3.0);
-		int height = std::ceil(image.rows / 3.0);
-
-		for (int i = 0; i < image.rows; i += height)
+		int divisions = 10;
+		for (int x = 0; x < resized.rows; x += (resized.rows / divisions))
 		{
-			for (int j = 0; j < image.cols; j += width)
+			for (int y = 0; y < resized.cols; y += (resized.cols / divisions))
 			{
-				if (i + height < image.rows && j + width < image.cols)
-				{
-					features.push_back(this->extractPixels(this->sobel(
-						image(cv::Rect(i, j, width, height))
-					), 64));
-				}
+				features.push_back(this->extractPixels(resized, this->threshold, x, y, size / divisions));
 			}
-		}*/
+		}
 
 		return features;
 	}
@@ -53,14 +58,35 @@ private:
 	float extractPixels(cv::Mat image, uchar threshold)
 	{
 		float count = 0.0f;
-		image.forEach<uchar>([&count, threshold](auto& pixel, const int* pos)
+		for (int i = 0; i < image.rows; i++)
 		{
-			if (pixel > threshold)
+			for (int j = 0; j < image.cols; j++)
 			{
-				count++;
+				if (image.at<uchar>(i, j) >= threshold)
+				{
+					count++;
+				}
 			}
-		});
+		}
 
 		return count;
 	}
+	float extractPixels(cv::Mat image, uchar threshold, int x, int y, int size)
+	{
+		float count = 0.0f;
+		for (int i = x; i < x + size; i++)
+		{
+			for (int j = y; j < y + size; j++)
+			{
+				if (image.at<uchar>(i, j) >= threshold)
+				{
+					count++;
+				}
+			}
+		}
+
+		return count;
+	}
+
+	uchar threshold;
 };

@@ -7,6 +7,7 @@
 #include "place.h"
 #include "example.h"
 #include "extractor/extractor.h"
+#include "classifier/classifier.h"
 
 std::vector<Place> loadGeometry(const std::string& filename);
 std::vector<std::string> loadPathFile(const std::string& filename);
@@ -16,7 +17,6 @@ void trainDataSet(const std::vector<std::string>& paths, const std::vector<Place
 std::vector<cv::Mat> extractParkingPlaces(const std::vector<Place>& places, cv::Mat image);
 Example generateExample(const std::vector<std::unique_ptr<Extractor>>& extractors, cv::Mat place, int classIndex);
 
-cv::Ptr<cv::ml::SVM> trainSVM(std::vector<Example>& examples);
-std::vector<int> predictSVM(cv::ml::SVM& svm, const std::vector<std::unique_ptr<Extractor>>& extractors, std::vector<cv::Mat>& frames);
+std::vector<int> predict(Classifier& classifier, const std::vector<std::unique_ptr<Extractor>>& extractors, std::vector<cv::Mat>& frames);
 
 cv::Mat markDetection(const std::vector<Place>& places, const std::vector<int>& classes, cv::Mat image);
