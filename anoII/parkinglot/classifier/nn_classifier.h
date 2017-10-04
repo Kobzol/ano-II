@@ -19,5 +19,8 @@ public:
 	virtual void serialize(const std::string& path) override;
 
 private:
+	void initialize(size_t inputSize);
+
 	cv::Ptr<cv::ml::ANN_MLP> net;
+	bool initialized = false;
 };

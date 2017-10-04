@@ -6,10 +6,10 @@
 #include "classifier/svm_classifier.h"
 #include "classifier/knn_classifier.h"
 #include "classifier/nn_classifier.h"
-#include "classifier/tinydnn_classifier.h"
+//#include "classifier/tinydnn_classifier.h"
 
 #define TRAIN
-#define CLASSIFIER_CLASS TinyDNNClassifier
+#define CLASSIFIER_CLASS NNClassifier
 #define CLASSIFIER_PATH ("classifier.xml")
 
 std::unique_ptr<Classifier> deserializeClassifier(const std::string& path)
