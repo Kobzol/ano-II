@@ -1,26 +1,16 @@
 #pragma once
 
-#include "classifier.h"
+#include "model_classifier.h"
 
 #include <memory>
 
-class NNClassifier : public Classifier
+class NNClassifier : public ModelClassifier<cv::ml::ANN_MLP>
 {
-	using Classifier::train;
-
 public:
-	static std::unique_ptr<NNClassifier> deserialize(const std::string& path);
-
-	NNClassifier();
-	explicit NNClassifier(cv::Ptr<cv::ml::ANN_MLP> net);
-
 	virtual void train(const std::vector<Example>& examples) override;
-	virtual int predict(const std::vector<float>& features) override;
-	virtual void serialize(const std::string& path) override;
 
 private:
 	void initialize(size_t inputSize);
 
-	cv::Ptr<cv::ml::ANN_MLP> net;
 	bool initialized = false;
 };

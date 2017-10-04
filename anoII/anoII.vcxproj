@@ -157,6 +157,7 @@
     <ClInclude Include="parkinglot\classifier\classifier.h" />
     <ClInclude Include="parkinglot\classifier\knn_classifier.h" />
     <ClInclude Include="parkinglot\classifier\nn_classifier.h" />
+    <ClInclude Include="parkinglot\classifier\model_classifier.h" />
     <ClInclude Include="parkinglot\classifier\svm_classifier.h" />
     <ClInclude Include="parkinglot\classifier\tinydnn_classifier.h" />
     <ClInclude Include="parkinglot\example.h" />

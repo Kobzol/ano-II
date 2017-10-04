@@ -1292,6 +1292,9 @@
     <ClInclude Include="parkinglot\classifier\tinydnn_classifier.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="parkinglot\classifier\model_classifier.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="parkinglot\tiny-dnn\cereal\external\rapidxml\manual.html" />

@@ -2,21 +2,6 @@
 
 #include "../utils.h"
 
-std::unique_ptr<NNClassifier> NNClassifier::deserialize(const std::string& path)
-{
-	return std::make_unique<NNClassifier>(cv::ml::ANN_MLP::load<cv::ml::ANN_MLP>(path));
-}
-
-NNClassifier::NNClassifier()
-{
-	this->net = cv::ml::ANN_MLP::create();
-}
-
-NNClassifier::NNClassifier(cv::Ptr<cv::ml::ANN_MLP> net): net(net)
-{
-
-}
-
 void NNClassifier::train(const std::vector<Example>& examples)
 {
 	if (!this->initialized)
@@ -36,23 +21,7 @@ void NNClassifier::train(const std::vector<Example>& examples)
 		}
 	}
 
-	this->net->train(trainingData, cv::ml::SampleTypes::ROW_SAMPLE, labels);
-}
-
-int NNClassifier::predict(const std::vector<float>& features)
-{
-	cv::Mat input(1, features.size(), CV_32FC1);
-	for (int i = 0; i < features.size(); i++)
-	{
-		input.at<float>(0, i) = features[i];
-	}
-
-	return static_cast<int>(this->net->predict(input));
-}
-
-void NNClassifier::serialize(const std::string& path)
-{
-	this->net->save(path);
+	this->model->train(trainingData, cv::ml::SampleTypes::ROW_SAMPLE, labels);
 }
 
 void NNClassifier::initialize(size_t inputSize)
@@ -67,12 +36,12 @@ void NNClassifier::initialize(size_t inputSize)
 	layerSize.at<int>(1) = inputSize / 2;
 	layerSize.at<int>(2) = 2;
 
-	this->net->setLayerSizes(layerSize);
-	this->net->setTrainMethod(cv::ml::ANN_MLP::BACKPROP);
-	this->net->setActivationFunction(cv::ml::ANN_MLP::SIGMOID_SYM);
-	this->net->setBackpropMomentumScale(0.1f);
-	this->net->setBackpropWeightScale(0.5f);
-	this->net->setTermCriteria(criteria);
+	this->model->setLayerSizes(layerSize);
+	this->model->setTrainMethod(cv::ml::ANN_MLP::BACKPROP);
+	this->model->setActivationFunction(cv::ml::ANN_MLP::SIGMOID_SYM);
+	this->model->setBackpropMomentumScale(0.1f);
+	this->model->setBackpropWeightScale(0.5f);
+	this->model->setTermCriteria(criteria);
 
 	this->initialized = true;
 }
