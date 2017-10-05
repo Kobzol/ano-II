@@ -72,7 +72,11 @@ bool TinyDNNClassifier::supportsFeatures()
 	return false;
 }
 
-void TinyDNNClassifier::serialize(const std::string& path)
+void TinyDNNClassifier::save(const std::string& path)
 {
 	this->net->save(path);
+}
+void TinyDNNClassifier::load(const std::string& path)
+{
+	this->net->load(path);
 }

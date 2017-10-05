@@ -2,15 +2,17 @@
 
 #include <vector>
 #include <opencv2/opencv.hpp>
+#include <memory>
+
+#include "extractor/extractor.h"
 
 class Example
 {
 public:
-	Example() = default;
-	explicit Example(int classIndex, cv::Mat image) : classIndex(classIndex), image(image)
-	{
+	static Example create(const std::vector<std::unique_ptr<Extractor>>& extractors, cv::Mat place, int classIndex);
 
-	}
+	Example() = default;
+	explicit Example(int classIndex, cv::Mat image);
 
 	std::vector<float> features;
 	int classIndex;

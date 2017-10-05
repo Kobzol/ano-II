@@ -10,7 +10,7 @@ public:
 	virtual void train(const std::vector<Example>& examples) override;
 
 private:
-	void initialize(size_t inputSize);
+	void initialize(int inputSize);
 
 	bool initialized = false;
 };

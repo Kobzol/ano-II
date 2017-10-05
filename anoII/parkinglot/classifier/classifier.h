@@ -15,7 +15,8 @@ public:
 
 	virtual bool supportsFeatures();
 
-	virtual void serialize(const std::string& path) = 0;
+	virtual void save(const std::string& path) = 0;
+	virtual void load(const std::string& path) = 0;
 
 protected:
 	void train(cv::ml::StatModel& model, const std::vector<Example>& examples);

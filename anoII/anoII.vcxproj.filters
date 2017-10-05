@@ -42,6 +42,12 @@
     <ClCompile Include="parkinglot\classifier\tinydnn_classifier.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="parkinglot\classifier\classifier_set.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="parkinglot\example.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="parkinglot\utils.h">
@@ -1293,6 +1299,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="parkinglot\classifier\model_classifier.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\classifier\classifier_set.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

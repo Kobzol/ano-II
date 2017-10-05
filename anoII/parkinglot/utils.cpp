@@ -44,7 +44,7 @@ std::vector<std::string> loadPathFile(const std::string& filename)
 	return paths;
 }
 
-void trainDataSet(const std::vector<std::string>& paths, const std::vector<Place>& places,
+void appendExamples(const std::vector<std::string>& paths, const std::vector<Place>& places,
 	const std::vector<std::unique_ptr<Extractor>>& extractors, int classIndex,
 	std::vector<Example>& examples)
 {
@@ -58,7 +58,7 @@ void trainDataSet(const std::vector<std::string>& paths, const std::vector<Place
 		std::vector<Example> localExamples;
 		for (auto& frame: frames)
 		{
-			localExamples.push_back(generateExample(extractors, frame, classIndex));
+			localExamples.push_back(Example::create(extractors, frame, classIndex));
 		}
 
 #pragma omp critical
@@ -105,114 +105,43 @@ std::vector<cv::Mat> extractParkingPlaces(const std::vector<Place>& places, cv::
 
 	return placeFrames;
 }
-Example generateExample(const std::vector<std::unique_ptr<Extractor>>& extractors, cv::Mat place, int classIndex)
-{
-	Example example(classIndex, place);
-	for (auto& extractor : extractors)
-	{
-		auto features = extractor->extract(place);
-		example.features.insert(example.features.end(), features.begin(), features.end());
-	}
 
-	return example;
+static std::string serializeResponse(std::vector<int>& response)
+{
+	std::string str;
+	for (auto r: response)
+	{
+		str += std::to_string(r);
+	}
+	return str;
 }
-
-std::vector<int> predict(Classifier& classifier, const std::vector<std::unique_ptr<Extractor>>& extractors, std::vector<cv::Mat>& frames)
-{
-	std::vector<int> classes;
-	for (auto& frame: frames)
-	{
-		int value = 0;
-		if (classifier.supportsFeatures())
-		{
-			value = classifier.predict(generateExample(extractors, frame, -1).features);
-		}
-		else value = classifier.predict(frame);
-
-		classes.push_back(value);
-	}
-
-	return classes;
-}
-
-/*void convert_image(cv::Mat image,
-	int w,
-	int h,
-	std::vector<tiny_dnn::vec_t>& data)
-{
-	cv::cvtColor(image, image, CV_BGR2GRAY);
-
-	cv::Mat_<uint8_t> resized;
-	cv::resize(image, resized, cv::Size(w, h));
-
-	tiny_dnn::vec_t d;
-	std::transform(resized.begin(), resized.end(), std::back_inserter(d),
-		[=](uint8_t c) { return c; });
-	data.push_back(d);
-}
-std::unique_ptr<tiny_dnn::network<tiny_dnn::sequential>> trainDNN(std::vector<Example>& examples)
-{
-	using namespace tiny_dnn;
-
-	auto net = std::make_unique<network<sequential>>();
-	network<sequential>& netRef = *net;
-
-	netRef << convolutional_layer(32, 32, 5, 1, 6, padding::same) << tanh_layer()  // in:32x32x1, 5x5conv, 6fmaps
-		<< max_pooling_layer(32, 32, 6, 2) << tanh_layer()                // in:32x32x6, 2x2pooling
-		<< convolutional_layer(16, 16, 5, 6, 16, padding::same) << tanh_layer() // in:16x16x6, 5x5conv, 16fmaps
-		<< max_pooling_layer(16, 16, 16, 2) << tanh_layer()               // in:16x16x16, 2x2pooling
-		<< fully_connected_layer(8 * 8 * 16, 100) << tanh_layer()                       // in:8x8x16, out:100
-		<< fully_connected_layer(100, 10) << softmax_layer();                       // in:100 out:10
-
-	std::vector<vec_t> data;
-	std::vector<size_t> classes;
-
-	for (auto& example : examples)
-	{
-		convert_image(example.image, 32, 32, data);
-		classes.push_back(example.classIndex);
-	}
-
-	adagrad opt;
-	net->train<cross_entropy, adagrad>(opt, data, classes, 20, 5);
-	return net;
-}
-std::vector<int> predictDNN(tiny_dnn::network<tiny_dnn::sequential>& net, const std::vector<cv::Mat>& images)
-{
-	using namespace tiny_dnn;
-	std::vector<vec_t> data;
-	for (auto& image : images)
-	{
-		convert_image(image, 32, 32, data);
-	}
-
-	std::vector<int> classes;
-	for (auto& item : data)
-	{
-		classes.push_back(net.predict_max_value(item));
-	}
-	return classes;
-}*/
-
-cv::Mat markDetection(const std::vector<Place>& places, const std::vector<int>& classes, cv::Mat image)
+cv::Mat markDetection(const std::vector<Place>& places, cv::Mat image, ClassifierSet& set, std::vector<std::vector<int>>& responses)
 {
 	cv::Mat detected = image.clone();
 
 	for (int i = 0; i < places.size(); i++)
 	{
-		int classIndex = classes[i];
+		int classIndex = set.predictClass(responses[i]);
 		auto& place = places[i];
 
 		cv::Scalar color(0.0f, classIndex == 0 ? 255.0f : 0.0f, classIndex == 1 ? 255.0f : 0.0f);
+		cv::polylines(detected, std::vector<cv::Point> {
+				cv::Point(place.coords[0], place.coords[1]),
+				cv::Point(place.coords[2], place.coords[3]),
+				cv::Point(place.coords[4], place.coords[5]),
+				cv::Point(place.coords[6], place.coords[7])
+			},
+			true, color
+		);
+
+		cv::Point center;
 		for (int i = 0; i < 4; i++)
 		{
-			int next = ((i + 1) * 2) % 8;
-			cv::line(detected,
-				cv::Point(place.coords[i * 2], place.coords[i * 2 + 1]),
-				cv::Point(place.coords[next], place.coords[next + 1]),
-				color
-			);
+			center.x += place.coords[i * 2];
+			center.y += place.coords[i * 2 + 1];
 		}
+
+		cv::putText(detected, serializeResponse(responses[i]), center / 4, CV_FONT_HERSHEY_COMPLEX_SMALL, 0.5, cv::Scalar::all(255.0f), 1, CV_AA);
 	}
 
 	return detected;

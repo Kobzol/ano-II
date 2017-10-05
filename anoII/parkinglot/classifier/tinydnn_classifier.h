@@ -18,8 +18,8 @@ public:
 
 	virtual bool supportsFeatures() override;
 
-	virtual void serialize(const std::string & path) override;
-
+	virtual void save(const std::string& path) override;
+	virtual void load(const std::string& path) override;
 
 private:
 	std::unique_ptr<tiny_dnn::network<tiny_dnn::sequential>> net;

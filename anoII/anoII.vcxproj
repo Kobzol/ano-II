@@ -146,15 +146,18 @@
     <ClCompile Include="cviko1\cviko1.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="parkinglot\classifier\classifier.cpp" />
+    <ClCompile Include="parkinglot\classifier\classifier_set.cpp" />
     <ClCompile Include="parkinglot\classifier\knn_classifier.cpp" />
     <ClCompile Include="parkinglot\classifier\nn_classifier.cpp" />
     <ClCompile Include="parkinglot\classifier\svm_classifier.cpp" />
     <ClCompile Include="parkinglot\classifier\tinydnn_classifier.cpp" />
+    <ClCompile Include="parkinglot\example.cpp" />
     <ClCompile Include="parkinglot\lot.cpp" />
     <ClCompile Include="parkinglot\utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="parkinglot\classifier\classifier.h" />
+    <ClInclude Include="parkinglot\classifier\classifier_set.h" />
     <ClInclude Include="parkinglot\classifier\knn_classifier.h" />
     <ClInclude Include="parkinglot\classifier\nn_classifier.h" />
     <ClInclude Include="parkinglot\classifier\model_classifier.h" />

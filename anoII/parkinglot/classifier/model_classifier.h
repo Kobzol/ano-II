@@ -33,9 +33,13 @@ public:
 		return static_cast<int>(this->model->predict(features));
 	}
 
-	virtual void serialize(const std::string& path) override
+	virtual void save(const std::string& path) override
 	{
 		this->model->save(path);
+	}
+	virtual void load(const std::string& path) override
+	{
+		this->model = T::load<T>(path);
 	}
 
 protected:

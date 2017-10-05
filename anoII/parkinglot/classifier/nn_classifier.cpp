@@ -6,15 +6,15 @@ void NNClassifier::train(const std::vector<Example>& examples)
 {
 	if (!this->initialized)
 	{
-		this->initialize(examples[0].features.size());
+		this->initialize(static_cast<int>(examples[0].features.size()));
 	}
 
 	cv::Mat trainingData(static_cast<int>(examples.size()), static_cast<int>(examples[0].features.size()), CV_32FC1);
 	cv::Mat labels(static_cast<int>(examples.size()), 2, CV_32FC1);
 	for (int i = 0; i < examples.size(); i++)
 	{
-		labels.at<float>(i, 0) = 1 - examples[i].classIndex;
-		labels.at<float>(i, 1) = examples[i].classIndex;
+		labels.at<float>(i, 0) = static_cast<float>(1 - examples[i].classIndex);
+		labels.at<float>(i, 1) = static_cast<float>(examples[i].classIndex);
 		for (int j = 0; j < examples[i].features.size(); j++)
 		{
 			trainingData.at<float>(i, j) = examples[i].features[j];
@@ -24,7 +24,7 @@ void NNClassifier::train(const std::vector<Example>& examples)
 	this->model->train(trainingData, cv::ml::SampleTypes::ROW_SAMPLE, labels);
 }
 
-void NNClassifier::initialize(size_t inputSize)
+void NNClassifier::initialize(int inputSize)
 {
 	CvTermCriteria criteria;
 	criteria.max_iter = 100;
