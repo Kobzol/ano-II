@@ -1,11 +1,11 @@
 #include "example.h"
 
-Example Example::create(const std::vector<std::unique_ptr<Extractor>>& extractors, cv::Mat place, int classIndex)
+Example Example::create(const std::vector<std::unique_ptr<Extractor>>& extractors, const cv::Mat& place, int classIndex)
 {
 	Example example(classIndex, place);
 	for (auto& extractor : extractors)
 	{
-		auto features = extractor->extract(place);
+		auto features = extractor->extract(extractor->needsCopy() ? place.clone() : place);
 		example.features.insert(example.features.end(), features.begin(), features.end());
 	}
 

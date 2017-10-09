@@ -2,6 +2,11 @@
 
 #include "../utils.h"
 
+NNClassifier::NNClassifier(std::string name): ModelClassifier<cv::ml::ANN_MLP>(name)
+{
+
+}
+
 void NNClassifier::train(const std::vector<Example>& examples)
 {
 	if (!this->initialized)

@@ -7,5 +7,5 @@
 class KnnClassifier : public ModelClassifier<cv::ml::KNearest>
 {
 public:
-	KnnClassifier();
+	KnnClassifier(std::string name);
 };

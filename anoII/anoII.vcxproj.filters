@@ -18,9 +18,6 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cviko1\cviko1.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="parkinglot\utils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -46,6 +43,18 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="parkinglot\example.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="parkinglot\classifier\direct_nn_classifier.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cviceni\detection.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="parkinglot\evaluator\evaluator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="parkinglot\evaluator\evaluation_result.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1302,6 +1311,24 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="parkinglot\classifier\classifier_set.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\classifier\direct_nn_classifier.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\extractor\hog_extractor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\evaluator\evaluator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\evaluator\evaluation_result.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\extractor\canny_extractor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parkinglot\extractor\hsv_extractor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

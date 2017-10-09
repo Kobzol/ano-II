@@ -1,6 +1,6 @@
 #include <opencv2/opencv.hpp>
 
-std::vector<cv::Rect> detectFaces(cv::CascadeClassifier& classifier, cv::Mat& frame)
+static std::vector<cv::Rect> detectFaces(cv::CascadeClassifier& classifier, cv::Mat& frame)
 {
 	std::vector<cv::Rect> faces;
 	classifier.detectMultiScale(frame, faces,
@@ -10,7 +10,15 @@ std::vector<cv::Rect> detectFaces(cv::CascadeClassifier& classifier, cv::Mat& fr
 	return faces;
 }
 
-void cviko1()
+static std::vector<cv::Rect> detectPeople(cv::CascadeClassifier& classifier, cv::Mat& frame)
+{
+	std::vector<cv::Rect> people;
+	cv::HOGDescriptor hog;
+	hog.detectMultiScale(frame, people);
+	return people;
+}
+
+void detection()
 {
 	cv::CascadeClassifier classifier;
 	cv::namedWindow("Detect");
@@ -28,10 +36,10 @@ void cviko1()
 		cv::Mat frame;
 		cap >> frame;
 
-		auto faces = detectFaces(classifier, frame);
-		for (auto& face : faces)
+		auto objects = detectPeople(classifier, frame);
+		for (auto& object : objects)
 		{
-			cv::rectangle(frame, face, cv::Scalar(0.0f, 0.0f, 255.0f));
+			cv::rectangle(frame, object, cv::Scalar(0.0f, 0.0f, 255.0f));
 		}
 
 		cv::imshow("Detect", frame);

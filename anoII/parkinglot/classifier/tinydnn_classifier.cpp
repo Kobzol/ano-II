@@ -24,22 +24,24 @@ std::unique_ptr<TinyDNNClassifier> TinyDNNClassifier::deserialize(const std::str
 	return std::make_unique<TinyDNNClassifier>(std::move(net));
 }
 
-TinyDNNClassifier::TinyDNNClassifier()
+TinyDNNClassifier::TinyDNNClassifier(std::string name): Classifier(name)
 {
 	this->net = std::make_unique<network<sequential>>();
 
 	network<sequential>& netRef = *this->net;
 
-	netRef
+	netRef = netRef
 		<< convolutional_layer(32, 32, 5, 1, 6, padding::same) << tanh_layer()			// in:32x32x1, 5x5conv, 6fmaps
-		<< average_pooling_layer(32, 32, 6, 2) << tanh_layer()							// in:32x32x6, 2x2pooling
-		<< convolutional_layer(16, 16, 5, 6, 16, padding::same) << tanh_layer()			// in:16x16x6, 5x5conv, 16fmaps
-		<< average_pooling_layer(16, 16, 16, 2) << tanh_layer()							// in:16x16x16, 2x2pooling
-		<< fully_connected_layer(8 * 8 * 16, 100) << tanh_layer()						// in:8x8x16, out:100
-		<< fully_connected_layer(100, 2) << softmax_layer();							// in:100 out:2
+		/*<< average_pooling_layer(32, 32, 6, 2) << relu_layer()							// in:32x32x6, 2x2pooling
+		<< convolutional_layer(16, 16, 5, 6, 16, padding::same) << relu_layer()			// in:16x16x6, 5x5conv, 16fmaps
+		<< average_pooling_layer(16, 16, 16, 2) << relu_layer()							// in:16x16x16, 2x2pooling
+		<< fully_connected_layer(8 * 8 * 16, 100) << relu_layer()						// in:8x8x16, out:100
+		<< fully_connected_layer(100, 2) << softmax_layer();							// in:100 out:2*/
+		<< fully_connected_layer(32 * 32 * 6, 100) << tanh_layer()
+		<< fully_connected_layer(100, 2) << sigmoid_layer();
 }
 
-TinyDNNClassifier::TinyDNNClassifier(std::unique_ptr<tiny_dnn::network<tiny_dnn::sequential>> net): net(std::move(net))
+TinyDNNClassifier::TinyDNNClassifier(std::unique_ptr<tiny_dnn::network<tiny_dnn::sequential>> net): net(std::move(net)), Classifier("TinyDNN")
 {
 
 }
@@ -55,8 +57,8 @@ void TinyDNNClassifier::train(const std::vector<Example>& examples)
 		classes.push_back(example.classIndex);
 	}
 
-	adagrad opt;
-	net->train<cross_entropy, adagrad>(opt, data, classes, 20, 5);
+	adam opt;
+	this->net->train<cross_entropy>(opt, data, classes, 20, 5);
 }
 
 int TinyDNNClassifier::predict(cv::Mat image)
@@ -64,7 +66,7 @@ int TinyDNNClassifier::predict(cv::Mat image)
 	std::vector<vec_t> data;
 	convert_image(image, 32, 32, data);
 
-	return this->net->predict_label(data[0]);
+	return this->net->predict_max_value(data[0]);
 }
 
 bool TinyDNNClassifier::supportsFeatures()

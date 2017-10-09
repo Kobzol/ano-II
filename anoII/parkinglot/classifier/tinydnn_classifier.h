@@ -10,7 +10,7 @@ class TinyDNNClassifier : public Classifier
 public:
 	static std::unique_ptr<TinyDNNClassifier> deserialize(const std::string& path);
 
-	TinyDNNClassifier();
+	TinyDNNClassifier(std::string name);
 	explicit TinyDNNClassifier(std::unique_ptr<tiny_dnn::network<tiny_dnn::sequential>> net);
 
 	virtual void train(const std::vector<Example>& examples) override;

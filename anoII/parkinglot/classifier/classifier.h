@@ -7,6 +7,7 @@
 class Classifier
 {
 public:
+	Classifier(std::string name);
 	virtual ~Classifier() = default;
 
 	virtual void train(const std::vector<Example>& examples) = 0;
@@ -18,6 +19,14 @@ public:
 	virtual void save(const std::string& path) = 0;
 	virtual void load(const std::string& path) = 0;
 
+	virtual std::string getName() const
+	{
+		return this->name;
+	}
+
 protected:
 	void train(cv::ml::StatModel& model, const std::vector<Example>& examples);
+
+private:
+	std::string name;
 };

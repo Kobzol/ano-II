@@ -44,6 +44,22 @@ std::vector<std::string> loadPathFile(const std::string& filename)
 	return paths;
 }
 
+std::vector<int> loadGroundTruth(const std::string& path)
+{
+	std::ifstream file(path);
+	if (!file.is_open()) throw "Ground truth file not found";
+
+	std::vector<int> truth;
+
+	std::string line;
+	while (file >> line)
+	{
+		truth.push_back(std::strtol(line.c_str(), nullptr, 10));
+	}
+
+	return truth;
+}
+
 void appendExamples(const std::vector<std::string>& paths, const std::vector<Place>& places,
 	const std::vector<std::unique_ptr<Extractor>>& extractors, int classIndex,
 	std::vector<Example>& examples)

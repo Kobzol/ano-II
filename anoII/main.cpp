@@ -1,11 +1,11 @@
-void cviko1();
+void detection();
 
 void parkinglot();
 
 int main()
 {
 	parkinglot();
-	//cviko1();
+	//detection();
 
 	return 0;
 }

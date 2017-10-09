@@ -21,17 +21,18 @@ public:
 		cv::medianBlur(resized, resized, 3);
 
 		cv::Mat sobel = this->sobel(resized);
-		cv::medianBlur(sobel, sobel, 3);
 		
 		std::vector<float> features;
 		features.push_back(this->extractPixels(sobel, this->threshold));
 
 		int divisions = 10;
+		int subSize = size / divisions;
+
 		for (int x = 0; x < resized.rows; x += (resized.rows / divisions))
 		{
 			for (int y = 0; y < resized.cols; y += (resized.cols / divisions))
 			{
-				features.push_back(this->extractPixels(resized, this->threshold, x, y, size / divisions));
+				features.push_back(this->extractPixels(resized(cv::Rect(x, y, subSize, subSize)), this->threshold));
 			}
 		}
 
@@ -39,7 +40,7 @@ public:
 	}
 
 private:
-	cv::Mat sobel(cv::Mat image)
+	cv::Mat sobel(const cv::Mat& image)
 	{
 		cv::Mat gradX;
 		cv::Sobel(image, gradX, CV_16S, 1, 0);
@@ -55,28 +56,12 @@ private:
 		return sobel;
 	}
 
-	float extractPixels(cv::Mat image, uchar threshold)
+	float extractPixels(const cv::Mat& image, uchar threshold)
 	{
 		float count = 0.0f;
 		for (int i = 0; i < image.rows; i++)
 		{
 			for (int j = 0; j < image.cols; j++)
-			{
-				if (image.at<uchar>(i, j) >= threshold)
-				{
-					count++;
-				}
-			}
-		}
-
-		return count;
-	}
-	float extractPixels(cv::Mat image, uchar threshold, int x, int y, int size)
-	{
-		float count = 0.0f;
-		for (int i = x; i < x + size; i++)
-		{
-			for (int j = y; j < y + size; j++)
 			{
 				if (image.at<uchar>(i, j) >= threshold)
 				{

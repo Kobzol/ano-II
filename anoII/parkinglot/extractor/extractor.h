@@ -10,4 +10,8 @@ public:
 	virtual ~Extractor() = default;
 
 	virtual std::vector<float> extract(cv::Mat image) = 0;
+	virtual bool needsCopy() const
+	{
+		return true;
+	}
 };

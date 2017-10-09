@@ -33,7 +33,7 @@ std::vector<std::vector<int>> ClassifierSet::predictMultiple(const std::vector<s
 
 	return responses;
 }
-int ClassifierSet::predictClass(std::vector<int>& response)
+int ClassifierSet::predictClass(const std::vector<int>& response)
 {
 	int results[2] = { 0 };
 	for (int r : response)

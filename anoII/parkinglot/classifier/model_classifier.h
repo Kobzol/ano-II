@@ -15,11 +15,11 @@ public:
 		return std::make_unique<ModelClassifier>(T::load<T>(path));
 	}
 
-	ModelClassifier()
+	explicit ModelClassifier(std::string name): Classifier(name)
 	{
 		this->model = T::create();
 	}
-	ModelClassifier(cv::Ptr<T> model) : model(model)
+	explicit ModelClassifier(cv::Ptr<T> model) : model(model)
 	{
 
 	}
@@ -40,6 +40,11 @@ public:
 	virtual void load(const std::string& path) override
 	{
 		this->model = T::load<T>(path);
+	}
+
+	cv::Ptr<T>& getModel()
+	{
+		return this->model;
 	}
 
 protected:

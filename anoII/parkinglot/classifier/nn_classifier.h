@@ -7,10 +7,12 @@
 class NNClassifier : public ModelClassifier<cv::ml::ANN_MLP>
 {
 public:
+	NNClassifier(std::string name);
+
 	virtual void train(const std::vector<Example>& examples) override;
 
-private:
-	void initialize(int inputSize);
+protected:
+	virtual void initialize(int inputSize);
 
 	bool initialized = false;
 };

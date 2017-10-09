@@ -11,6 +11,7 @@
 
 std::vector<Place> loadGeometry(const std::string& filename);
 std::vector<std::string> loadPathFile(const std::string& filename);
+std::vector<int> loadGroundTruth(const std::string& path);
 
 void appendExamples(const std::vector<std::string>& paths, const std::vector<Place>& places, const std::vector<std::unique_ptr<Extractor>>& extractors,
 	int classIndex, std::vector<Example>& examples);

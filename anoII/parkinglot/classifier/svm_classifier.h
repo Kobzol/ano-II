@@ -7,5 +7,5 @@
 class SvmClassifier : public ModelClassifier<cv::ml::SVM>
 {
 public:
-	SvmClassifier();
+	SvmClassifier(std::string name, int kernelType = cv::ml::SVM::KernelTypes::LINEAR);
 };

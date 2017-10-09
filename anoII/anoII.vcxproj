@@ -76,6 +76,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)opencv\include;$(ProjectDir)parkinglot\tiny-dnn;$(SolutionDir)dlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)opencv\x64\vc14\lib;$(SolutionDir)dlib\build\Release</AdditionalLibraryDirectories>
@@ -93,6 +94,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)opencv\include;$(ProjectDir)parkinglot\tiny-dnn;$(SolutionDir)dlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)opencv\x64\vc14\lib;$(SolutionDir)dlib\build\Release</AdditionalLibraryDirectories>
@@ -111,6 +113,7 @@
       <SDLCheck>false</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)opencv\include;$(ProjectDir)parkinglot\tiny-dnn;$(SolutionDir)dlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -131,6 +134,7 @@
       <SDLCheck>false</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)opencv\include;$(ProjectDir)parkinglot\tiny-dnn;$(SolutionDir)dlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -143,14 +147,17 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="cviko1\cviko1.cpp" />
+    <ClCompile Include="cviceni\detection.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="parkinglot\classifier\classifier.cpp" />
     <ClCompile Include="parkinglot\classifier\classifier_set.cpp" />
+    <ClCompile Include="parkinglot\classifier\direct_nn_classifier.cpp" />
     <ClCompile Include="parkinglot\classifier\knn_classifier.cpp" />
     <ClCompile Include="parkinglot\classifier\nn_classifier.cpp" />
     <ClCompile Include="parkinglot\classifier\svm_classifier.cpp" />
     <ClCompile Include="parkinglot\classifier\tinydnn_classifier.cpp" />
+    <ClCompile Include="parkinglot\evaluator\evaluation_result.cpp" />
+    <ClCompile Include="parkinglot\evaluator\evaluator.cpp" />
     <ClCompile Include="parkinglot\example.cpp" />
     <ClCompile Include="parkinglot\lot.cpp" />
     <ClCompile Include="parkinglot\utils.cpp" />
@@ -158,13 +165,19 @@
   <ItemGroup>
     <ClInclude Include="parkinglot\classifier\classifier.h" />
     <ClInclude Include="parkinglot\classifier\classifier_set.h" />
+    <ClInclude Include="parkinglot\classifier\direct_nn_classifier.h" />
     <ClInclude Include="parkinglot\classifier\knn_classifier.h" />
     <ClInclude Include="parkinglot\classifier\nn_classifier.h" />
     <ClInclude Include="parkinglot\classifier\model_classifier.h" />
     <ClInclude Include="parkinglot\classifier\svm_classifier.h" />
     <ClInclude Include="parkinglot\classifier\tinydnn_classifier.h" />
+    <ClInclude Include="parkinglot\evaluator\evaluation_result.h" />
+    <ClInclude Include="parkinglot\evaluator\evaluator.h" />
     <ClInclude Include="parkinglot\example.h" />
+    <ClInclude Include="parkinglot\extractor\canny_extractor.h" />
     <ClInclude Include="parkinglot\extractor\extractor.h" />
+    <ClInclude Include="parkinglot\extractor\hog_extractor.h" />
+    <ClInclude Include="parkinglot\extractor\hsv_extractor.h" />
     <ClInclude Include="parkinglot\extractor\sobel_extractor.h" />
     <ClInclude Include="parkinglot\place.h" />
     <ClInclude Include="parkinglot\tiny-dnn\activations\activation_layer.h" />

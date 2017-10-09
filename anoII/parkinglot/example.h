@@ -9,7 +9,7 @@
 class Example
 {
 public:
-	static Example create(const std::vector<std::unique_ptr<Extractor>>& extractors, cv::Mat place, int classIndex);
+	static Example create(const std::vector<std::unique_ptr<Extractor>>& extractors, const cv::Mat& place, int classIndex);
 
 	Example() = default;
 	explicit Example(int classIndex, cv::Mat image);

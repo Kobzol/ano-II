@@ -1,5 +1,10 @@
 #include "classifier.h"
 
+Classifier::Classifier(std::string name): name(name)
+{
+
+}
+
 int Classifier::predict(const std::vector<float>& features)
 {
 	return 0;
@@ -17,7 +22,7 @@ bool Classifier::supportsFeatures()
 
 void Classifier::train(cv::ml::StatModel& model, const std::vector<Example>& examples)
 {
-	cv::Mat trainingData(static_cast<int>(examples.size()), static_cast<int>(examples[0].features.size()), CV_32F);
+	cv::Mat trainingData(static_cast<int>(examples.size()), static_cast<int>(examples[0].features.size()), CV_32FC1);
 	std::vector<int> labels;
 	for (int i = 0; i < examples.size(); i++)
 	{
