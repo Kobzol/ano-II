@@ -7,11 +7,13 @@ class HOGExtractor : public Extractor
 public:
 	virtual std::vector<float> extract(cv::Mat image) override
 	{
-		cv::HOGDescriptor hog;
+		cv::resize(image, image, cv::Size(80, 80));
+
+		cv::HOGDescriptor hog(image.size(), cv::Size(32, 32), cv::Size(16, 16), cv::Size(16, 16), 9);
 		std::vector<float> descriptors;
 		hog.compute(image, descriptors);
 
-		std::vector<float> features;
+		/*std::vector<float> features;
 		int subdivisions = 10;
 		int width = (int) std::sqrt(descriptors.size());
 		int stride = width / subdivisions;
@@ -35,10 +37,11 @@ public:
 			}
 		}
 
-		return features;
+		return features; */
+		return descriptors;
 	}
 	virtual bool needsCopy() const override
 	{
-		return false;
+		return true;
 	}
 };

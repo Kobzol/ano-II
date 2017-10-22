@@ -1,19 +1,20 @@
 #pragma once
 
-#include "nn_classifier.h"
+#include "model_classifier.h"
 
-class DirectNNClassifier : public NNClassifier
+#include <memory>
+
+class DirectNNClassifier : public ModelClassifier<cv::ml::ANN_MLP>
 {
 public:
 	DirectNNClassifier(std::string name);
 
-	virtual bool supportsFeatures() override;
 	virtual void train(const std::vector<Example>& examples) override;
-	virtual int predict(cv::Mat image);
+	virtual int predict(cv::Mat image) override;
+	virtual bool supportsFeatures() override;
 
 protected:
-	virtual void initialize(int inputSize) override;
+	virtual void initialize(int inputSize);
 
-private:
-	std::vector<float> getImageFeatures(cv::Mat image);
+	bool initialized = false;
 };

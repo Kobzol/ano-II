@@ -1,6 +1,7 @@
 #include "evaluator.h"
 
 #include <fstream>
+#include <algorithm>
 
 Evaluator::Evaluator(std::vector<int> groundTruth): groundTruth(groundTruth)
 {
@@ -9,10 +10,10 @@ Evaluator::Evaluator(std::vector<int> groundTruth): groundTruth(groundTruth)
 
 EvaluationResult Evaluator::evaluate()
 {
-	if (this->groundTruth.size() != this->results.size()) throw "Wrong result count";
-
 	EvaluationResult result;
-	for (int i = 0; i < this->groundTruth.size(); i++)
+	size_t size = std::min(this->results.size(), this->groundTruth.size());
+
+	for (int i = 0; i < size; i++)
 	{
 		result.add(this->groundTruth[i], this->results[i]);
 	}

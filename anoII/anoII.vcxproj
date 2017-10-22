@@ -75,15 +75,18 @@
       <SDLCheck>false</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)opencv\include;$(ProjectDir)parkinglot\tiny-dnn;$(SolutionDir)dlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
-      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(SolutionDir)opencv\x64\vc14\lib;$(SolutionDir)dlib\build\Release</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opencv_world310d.lib;dlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)opencv\x64\vc14\lib;$(SolutionDir)dlib\build\Debug;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v8.0\lib\x64</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opencv_core330d.lib;opencv_imgproc330d.lib;opencv_highgui330d.lib;opencv_imgcodecs330d.lib;opencv_objdetect330d.lib;opencv_ml330d.lib;opencv_videoio330d.lib;opencv_calib3d330d.lib;opencv_features2d330d.lib;opencv_xfeatures2d330d.lib;opencv_dnn330d.lib;cudart.lib;cublas.lib;cudnn.lib;curand.lib;cusolver.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y "$(SolutionDir)opencv\x64\vc14\bin\" "$(TargetDir)"</Command>
+      <Command>
+      </Command>
+      <Message>copy /Y "$(SolutionDir)opencv\x64\vc14\bin\" "$(TargetDir)"</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -93,15 +96,18 @@
       <SDLCheck>false</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)opencv\include;$(ProjectDir)parkinglot\tiny-dnn;$(SolutionDir)dlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
-      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(SolutionDir)opencv\x64\vc14\lib;$(SolutionDir)dlib\build\Release</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opencv_world310d.lib;dlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)opencv\x64\vc14\lib;$(SolutionDir)dlib\build\Debug;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v8.0\lib\x64</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opencv_core330d.lib;opencv_imgproc330d.lib;opencv_highgui330d.lib;opencv_imgcodecs330d.lib;opencv_objdetect330d.lib;opencv_ml330d.lib;opencv_videoio330d.lib;opencv_calib3d330d.lib;opencv_features2d330d.lib;opencv_xfeatures2d330d.lib;opencv_dnn330d.lib;cudart.lib;cublas.lib;cudnn.lib;curand.lib;cusolver.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y "$(SolutionDir)opencv\x64\vc14\bin\" "$(TargetDir)"</Command>
+      <Command>
+      </Command>
+      <Message>copy /Y "$(SolutionDir)opencv\x64\vc14\bin\" "$(TargetDir)"</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -114,15 +120,18 @@
       <AdditionalIncludeDirectories>$(SolutionDir)opencv\include;$(ProjectDir)parkinglot\tiny-dnn;$(SolutionDir)dlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <PreprocessorDefinitions>DLIB_USE_CUDA;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)opencv\x64\vc14\lib;$(SolutionDir)dlib\build\Release</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opencv_world310.lib;dlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)opencv\x64\vc14\lib;$(SolutionDir)dlib\build\Release;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v8.0\lib\x64</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opencv_core330.lib;opencv_imgproc330.lib;opencv_highgui330.lib;opencv_imgcodecs330.lib;opencv_objdetect330.lib;opencv_ml330.lib;opencv_videoio330.lib;opencv_calib3d330.lib;opencv_features2d330.lib;opencv_xfeatures2d330.lib;opencv_dnn330.lib;dlib.lib;cudart.lib;cublas.lib;cudnn.lib;curand.lib;cusolver.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y "$(SolutionDir)opencv\x64\vc14\bin\" "$(TargetDir)"</Command>
+      <Command>
+      </Command>
+      <Message>copy /Y "$(SolutionDir)opencv\x64\vc14\bin\" "$(TargetDir)"</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -135,23 +144,29 @@
       <AdditionalIncludeDirectories>$(SolutionDir)opencv\include;$(ProjectDir)parkinglot\tiny-dnn;$(SolutionDir)dlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <PreprocessorDefinitions>DLIB_USE_CUDA;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)opencv\x64\vc14\lib;$(SolutionDir)dlib\build\Release</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opencv_world310.lib;dlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)opencv\x64\vc14\lib;$(SolutionDir)dlib\build\Release;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v8.0\lib\x64</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opencv_core330.lib;opencv_imgproc330.lib;opencv_highgui330.lib;opencv_imgcodecs330.lib;opencv_objdetect330.lib;opencv_ml330.lib;opencv_videoio330.lib;opencv_calib3d330.lib;opencv_features2d330.lib;opencv_xfeatures2d330.lib;opencv_dnn330.lib;dlib.lib;cudart.lib;cublas.lib;cudnn.lib;curand.lib;cusolver.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y "$(SolutionDir)opencv\x64\vc14\bin\" "$(TargetDir)"</Command>
+      <Command>
+      </Command>
+      <Message>copy /Y "$(SolutionDir)opencv\x64\vc14\bin\" "$(TargetDir)"</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\dlib\dlib\all\source.cpp" />
     <ClCompile Include="cviceni\detection.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="parkinglot\classifier\classifier.cpp" />
     <ClCompile Include="parkinglot\classifier\classifier_set.cpp" />
     <ClCompile Include="parkinglot\classifier\direct_nn_classifier.cpp" />
+    <ClCompile Include="parkinglot\classifier\dlib_classifier.cpp" />
+    <ClCompile Include="parkinglot\classifier\dnn_classifier.cpp" />
     <ClCompile Include="parkinglot\classifier\knn_classifier.cpp" />
     <ClCompile Include="parkinglot\classifier\nn_classifier.cpp" />
     <ClCompile Include="parkinglot\classifier\svm_classifier.cpp" />
@@ -166,6 +181,8 @@
     <ClInclude Include="parkinglot\classifier\classifier.h" />
     <ClInclude Include="parkinglot\classifier\classifier_set.h" />
     <ClInclude Include="parkinglot\classifier\direct_nn_classifier.h" />
+    <ClInclude Include="parkinglot\classifier\dlib_classifier.h" />
+    <ClInclude Include="parkinglot\classifier\dnn_classifier.h" />
     <ClInclude Include="parkinglot\classifier\knn_classifier.h" />
     <ClInclude Include="parkinglot\classifier\nn_classifier.h" />
     <ClInclude Include="parkinglot\classifier\model_classifier.h" />
@@ -176,8 +193,11 @@
     <ClInclude Include="parkinglot\example.h" />
     <ClInclude Include="parkinglot\extractor\canny_extractor.h" />
     <ClInclude Include="parkinglot\extractor\extractor.h" />
+    <ClInclude Include="parkinglot\extractor\haar_extractor.h" />
+    <ClInclude Include="parkinglot\extractor\histogram_extractor.h" />
     <ClInclude Include="parkinglot\extractor\hog_extractor.h" />
-    <ClInclude Include="parkinglot\extractor\hsv_extractor.h" />
+    <ClInclude Include="parkinglot\extractor\kaze_extractor.h" />
+    <ClInclude Include="parkinglot\extractor\surf_extractor.h" />
     <ClInclude Include="parkinglot\extractor\sobel_extractor.h" />
     <ClInclude Include="parkinglot\place.h" />
     <ClInclude Include="parkinglot\tiny-dnn\activations\activation_layer.h" />

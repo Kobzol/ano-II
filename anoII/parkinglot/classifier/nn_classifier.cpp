@@ -32,20 +32,21 @@ void NNClassifier::train(const std::vector<Example>& examples)
 void NNClassifier::initialize(int inputSize)
 {
 	CvTermCriteria criteria;
-	criteria.max_iter = 100;
+	criteria.max_iter = 1000;
 	criteria.epsilon = 0.00001f;
 	criteria.type = CV_TERMCRIT_ITER | CV_TERMCRIT_EPS;
 
-	cv::Mat layerSize(1, 3, CV_32SC1);
+	cv::Mat layerSize(1, 4, CV_32SC1);
 	layerSize.at<int>(0) = inputSize;
 	layerSize.at<int>(1) = inputSize / 2;
-	layerSize.at<int>(2) = 2;
+	layerSize.at<int>(2) = inputSize / 4;
+	layerSize.at<int>(3) = 2;
 
 	this->model->setLayerSizes(layerSize);
-	this->model->setTrainMethod(cv::ml::ANN_MLP::BACKPROP);
-	this->model->setActivationFunction(cv::ml::ANN_MLP::SIGMOID_SYM);
+	this->model->setTrainMethod(cv::ml::ANN_MLP::TrainingMethods::BACKPROP);
+	this->model->setActivationFunction(cv::ml::ANN_MLP::ActivationFunctions::SIGMOID_SYM);
 	this->model->setBackpropMomentumScale(0.1f);
-	this->model->setBackpropWeightScale(0.5f);
+	this->model->setBackpropWeightScale(0.1f);
 	this->model->setTermCriteria(criteria);
 
 	this->initialized = true;

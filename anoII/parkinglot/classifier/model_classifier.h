@@ -39,7 +39,7 @@ public:
 	}
 	virtual void load(const std::string& path) override
 	{
-		this->model = T::load<T>(path);
+		this->model = cv::Algorithm::load<T>(path);
 	}
 
 	cv::Ptr<T>& getModel()

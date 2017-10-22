@@ -27,8 +27,8 @@ std::vector<std::vector<int>> ClassifierSet::predictMultiple(const std::vector<s
 	std::vector<std::vector<int>> responses;
 	for (auto& frame : frames)
 	{
-		Example example = Example::create(extractors, frame, -1);
-		responses.push_back(this->predict(example, frame));
+		Example example = Example::create(extractors, frame.clone(), -1);
+		responses.push_back(this->predict(example, frame.clone()));
 	}
 
 	return responses;
@@ -47,7 +47,7 @@ void ClassifierSet::load(const std::string& name)
 {
 	for (int i = 0; i < this->classifiers.size(); i++)
 	{
-		std::string path = name + std::to_string(i) + ".xml";
+		std::string path = name + std::to_string(i) + ".dat";
 		this->classifiers[i]->load(path);
 	}
 }
@@ -55,7 +55,7 @@ void ClassifierSet::save(const std::string& name)
 {
 	for (int i = 0; i < this->classifiers.size(); i++)
 	{
-		std::string path = name + std::to_string(i) + ".xml";
+		std::string path = name + std::to_string(i) + ".dat";
 		this->classifiers[i]->save(path);
 	}
 }

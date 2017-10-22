@@ -1,6 +1,7 @@
 #include "utils.h"
 
 #include <fstream>
+#include <omp.h>
 
 std::vector<Place> loadGeometry(const std::string& filename)
 {
@@ -60,29 +61,78 @@ std::vector<int> loadGroundTruth(const std::string& path)
 	return truth;
 }
 
+std::vector<cv::Mat> expandDataset(const std::vector<cv::Mat>& frames)
+{
+	std::vector<cv::Mat> images;
+	for (auto& frame : frames)
+	{
+		images.push_back(frame);
+		
+		/*cv::Mat tmp;
+		cv::flip(frame, tmp, 1);
+		images.push_back(tmp);
+
+		/*for (int i = 0; i < 3; i++)
+		{
+			cv::Mat rotated;
+			cv::rotate(frame, rotated, i);
+			images.push_back(rotated);
+		}
+
+		cv::Mat rotated;
+		cv::rotate(frame, rotated, cv::RotateFlags::ROTATE_180);
+		images.push_back(rotated);*/
+	}
+
+	return images;
+}
+
 void appendExamples(const std::vector<std::string>& paths, const std::vector<Place>& places,
 	const std::vector<std::unique_ptr<Extractor>>& extractors, int classIndex,
 	std::vector<Example>& examples)
 {
+	size_t size = paths.size();
+	std::vector<std::vector<Example>> results(omp_get_max_threads(), {});
+
 #pragma omp parallel for
-	for (int i = 0; i < paths.size(); i++)
+	for (int i = 0; i < size; i++)
 	{
 		auto& path = paths[i];
-		cv::Mat trainingImage = cv::imread(path, 1);
+		cv::Mat trainingImage = cv::imread(path, cv::IMREAD_COLOR);
 		std::vector<cv::Mat> frames = extractParkingPlaces(places, trainingImage);
-
-		std::vector<Example> localExamples;
+		frames = expandDataset(frames);
+		
+		auto& vec = results[omp_get_thread_num()];
 		for (auto& frame: frames)
 		{
-			localExamples.push_back(Example::create(extractors, frame, classIndex));
+			vec.push_back(Example::create(extractors, frame, classIndex));
 		}
+	}
 
-#pragma omp critical
+	for (auto& sub : results)
+	{
+		examples.insert(examples.end(), sub.begin(), sub.end());
+	}
+}
+void appendDirectExamples(const std::vector<cv::Mat>& places, const std::vector<std::unique_ptr<Extractor>>& extractors, int classIndex, std::vector<Example>& examples)
+{
+	size_t size = places.size();
+	std::vector<std::vector<Example>> results(omp_get_max_threads(), {});
+
+#pragma omp parallel for
+	for (int i = 0; i < size; i++)
+	{
+		std::vector<cv::Mat> images = { places[i] };
+		images = expandDataset(images);
+		for (auto& img : images)
 		{
-			examples.insert(examples.end(), localExamples.begin(), localExamples.end());
+			results[omp_get_thread_num()].push_back(Example::create(extractors, img, classIndex));
 		}
+	}
 
-		std::cerr << "Trained from " << path << std::endl;
+	for (auto& sub : results)
+	{
+		examples.insert(examples.end(), sub.begin(), sub.end());
 	}
 }
 std::vector<cv::Mat> extractParkingPlaces(const std::vector<Place>& places, cv::Mat image)
@@ -161,4 +211,83 @@ cv::Mat markDetection(const std::vector<Place>& places, cv::Mat image, Classifie
 	}
 
 	return detected;
+}
+
+void writeImages(const std::vector<cv::Mat>& images, const std::string& path)
+{
+	std::ofstream fs(path, std::ios::binary);
+	size_t count = images.size();
+	fs.write((const char*) &count, sizeof(count));
+
+	for (auto& img : images)
+	{
+		writeMatBinary(fs, img);
+	}
+	fs.flush();
+}
+
+std::vector<cv::Mat> readImages(const std::string& path)
+{
+	std::ifstream fs(path, std::ios::binary);
+	size_t count;
+	fs.read((char*) &count, sizeof(count));
+
+	std::vector<cv::Mat> images(count);
+
+	for (auto& img : images)
+	{
+		readMatBinary(fs, img);
+	}
+
+	return images;
+}
+
+bool writeMatBinary(std::ofstream& ofs, const cv::Mat& mat)
+{
+	if (!ofs.is_open())
+	{
+		return false;
+	}
+	if (mat.empty())
+	{
+		int s = 0;
+		ofs.write((const char*)(&s), sizeof(int));
+		return true;
+	}
+	int type = mat.type();
+	ofs.write((const char*)(&mat.rows), sizeof(int));
+	ofs.write((const char*)(&mat.cols), sizeof(int));
+	ofs.write((const char*)(&type), sizeof(int));
+	ofs.write((const char*)(mat.data), mat.elemSize() * mat.total());
+
+	return true;
+}
+
+bool readMatBinary(std::ifstream& ifs, cv::Mat& mat)
+{
+	if (!ifs.is_open())
+	{
+		return false;
+	}
+
+	int rows, cols, type;
+	ifs.read((char*)(&rows), sizeof(int));
+	if (rows == 0)
+	{
+		return true;
+	}
+	ifs.read((char*)(&cols), sizeof(int));
+	ifs.read((char*)(&type), sizeof(int));
+
+	mat.release();
+	mat.create(rows, cols, type);
+	ifs.read((char*)(mat.data), mat.elemSize() * mat.total());
+
+	return true;
+}
+
+bool fileExists(const std::string& name)
+{
+	std::ifstream fs(name);
+	return fs.good();
 }

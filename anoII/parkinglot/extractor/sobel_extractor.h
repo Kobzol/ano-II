@@ -15,9 +15,10 @@ public:
 	{
 		const int size = 80;
 
-		cv::Mat resized;
 		cv::cvtColor(image, image, CV_BGR2GRAY);
-		cv::resize(image, resized, cv::Size(size, size));
+
+		cv::Mat resized = image.clone();
+		cv::resize(resized, resized, cv::Size(size, size));
 		cv::medianBlur(resized, resized, 3);
 
 		cv::Mat sobel = this->sobel(resized);
@@ -26,13 +27,15 @@ public:
 		features.push_back(this->extractPixels(sobel, this->threshold));
 
 		int divisions = 10;
-		int subSize = size / divisions;
+		int subWidth = sobel.cols / divisions;
+		int subHeight = sobel.rows / divisions;
 
-		for (int x = 0; x < resized.rows; x += (resized.rows / divisions))
+		for (int x = 0; x < sobel.rows; x += subHeight)
 		{
-			for (int y = 0; y < resized.cols; y += (resized.cols / divisions))
+			for (int y = 0; y < sobel.cols; y += subWidth)
 			{
-				features.push_back(this->extractPixels(resized(cv::Rect(x, y, subSize, subSize)), this->threshold));
+				if (x + subHeight >= sobel.rows || y + subWidth >= sobel.cols) continue;
+				features.push_back(this->extractPixels(sobel(cv::Rect(y, x, subWidth, subHeight)), this->threshold));
 			}
 		}
 
