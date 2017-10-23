@@ -9,7 +9,7 @@
 #include <memory>
 
 // Canny - 32
-// BGR - 10 (20/28, dropout/750fc, 15/5/5con)
+// BGR - 5 (20/28, dropout/750fc, 15/5/5con)
 
 using pixel_type = dlib::bgr_pixel;
 using net_inner = dlib::relu<dlib::fc<750,

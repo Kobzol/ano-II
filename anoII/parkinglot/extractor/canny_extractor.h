@@ -17,7 +17,6 @@ public:
 		cv::Mat resized;
 		cv::cvtColor(image, image, CV_BGR2GRAY);
 		cv::resize(image, resized, cv::Size(size, size));
-		resized = image.clone();
 		cv::medianBlur(resized, resized, 3);
 
 		cv::Mat sobel = this->sobel(resized);

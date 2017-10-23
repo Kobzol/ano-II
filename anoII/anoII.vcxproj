@@ -175,6 +175,7 @@
     <ClCompile Include="parkinglot\evaluator\evaluator.cpp" />
     <ClCompile Include="parkinglot\example.cpp" />
     <ClCompile Include="parkinglot\lot.cpp" />
+    <ClCompile Include="parkinglot\setup.cpp" />
     <ClCompile Include="parkinglot\utils.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -200,6 +201,7 @@
     <ClInclude Include="parkinglot\extractor\surf_extractor.h" />
     <ClInclude Include="parkinglot\extractor\sobel_extractor.h" />
     <ClInclude Include="parkinglot\place.h" />
+    <ClInclude Include="parkinglot\setup.h" />
     <ClInclude Include="parkinglot\tiny-dnn\activations\activation_layer.h" />
     <ClInclude Include="parkinglot\tiny-dnn\activations\elu_layer.h" />
     <ClInclude Include="parkinglot\tiny-dnn\activations\leaky_relu_layer.h" />
