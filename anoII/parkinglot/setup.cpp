@@ -1,7 +1,7 @@
 #include "setup.h"
 
 #include "utils.h"
-#include "classifier/lbp_classifier.h"
+#include "classifier/dlib_classifier.h"
 
 std::vector<std::unique_ptr<Extractor>> createExtractors(const std::vector<float>& params)
 {
@@ -25,8 +25,8 @@ ClassifierSet createClassifiers()
 	//set.add(std::make_unique<DirectNNClassifier>("Direct NN"));
 	//set.add(std::make_unique<DNNClassifier>("DNN"));
 	//set.add(std::make_unique<TinyDNNClassifier>("TinyDNN"));
-	//set.add(std::make_unique<DlibClassifier>("Dlib CNN"));
-	set.add(std::make_unique<LBPClassifier>("LBP"));
+	set.add(std::make_unique<DlibClassifier>("Dlib CNN"));
+	//set.add(std::make_unique<LBPClassifier>("LBP"));
 
 	/*auto boost = std::make_unique<ModelClassifier<cv::ml::Boost>>(std::string("Boost"));
 	set.add(std::move(boost));

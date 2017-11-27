@@ -41,7 +41,7 @@ void DlibClassifier::train(const std::vector<Example>& examples)
 	trainer.set_learning_rate(0.01f);
 	trainer.set_min_learning_rate(0.0001f);
 	trainer.set_mini_batch_size(128);
-	trainer.set_max_num_epochs(500);
+	trainer.set_max_num_epochs(100);
 	trainer.be_verbose();
 
 	std::vector<float> labels;

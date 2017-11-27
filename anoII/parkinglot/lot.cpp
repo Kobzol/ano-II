@@ -12,7 +12,7 @@
 // DNN(36, 0.2, 0.2) + Canny(30) - 0.977, 19
 // Dlib - (5+8 => 2)
 
-#define TRAIN
+//#define TRAIN
 #define CLASSIFIER_PATH "classifier"
 #define PKLOT_04_BIN_0 "pklot04_0.bin"
 #define PKLOT_04_BIN_1 "pklot04_1.bin"
@@ -22,8 +22,8 @@
 #define PKLOT_PUC_BIN_1 "pklotPUC_1.bin"
 #define SIMKANIC_BIN_0 "simkanic_0.bin"
 #define SIMKANIC_BIN_1 "simkanic_1.bin"
-//#define SHUFFLE_EXAMPLES
-#define VISUAL_TEST (false)
+#define SHUFFLE_EXAMPLES
+#define VISUAL_TEST (true)
 
 
 void parkinglot()
@@ -41,7 +41,7 @@ void parkinglot()
 		"../train_images/free/free.txt",
 		examples
 	);
-	/*createExamplesPklot(extractors,
+	createExamplesPklot(extractors,
 		"../UFPR05/full.txt",
 		"../UFPR05/empty.txt",
 		PKLOT_05_BIN_1,
@@ -54,7 +54,7 @@ void parkinglot()
 		PKLOT_04_BIN_1,
 		PKLOT_04_BIN_0,
 		examples
-	);*/
+	);
 	createExamplesPklot(extractors,
 		"../train_images_2/full.txt",
 		"../train_images_2/empty.txt",

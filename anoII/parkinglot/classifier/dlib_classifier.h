@@ -11,6 +11,16 @@
 // Canny - 32
 // BGR - 5 (20/28, dropout/750fc, 15/5/5con)
 
+/*
+male/female
+83.9
+using net_inner = dlib::relu<dlib::fc<750,
+dlib::max_pool<2, 2, 2, 2, dlib::relu<dlib::bn_con<dlib::con<50, 3, 3, 1, 1,
+dlib::max_pool<2, 2, 2, 2, dlib::relu<dlib::bn_con<dlib::con<30, 3, 3, 1, 1,
+dlib::input<dlib::matrix<pixel_type>>
+>>>>>>>>>>;
+*/
+
 using pixel_type = dlib::bgr_pixel;
 using net_inner = dlib::relu<dlib::fc<750,
 	dlib::max_pool<2, 2, 2, 2, dlib::relu<dlib::con<15, 5, 5, 1, 1,

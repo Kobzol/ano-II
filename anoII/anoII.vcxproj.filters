@@ -72,6 +72,12 @@
     <ClCompile Include="parkinglot\classifier\lbp_classifier.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="male_female\sexes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="male_female\sexutils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="parkinglot\utils.h">
@@ -1365,6 +1371,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="parkinglot\classifier\lbp_classifier.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="male_female\sexutils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

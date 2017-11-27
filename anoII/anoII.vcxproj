@@ -162,6 +162,8 @@
     <ClCompile Include="..\dlib\dlib\all\source.cpp" />
     <ClCompile Include="cviceni\detection.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="male_female\sexes.cpp" />
+    <ClCompile Include="male_female\sexutils.cpp" />
     <ClCompile Include="parkinglot\classifier\classifier.cpp" />
     <ClCompile Include="parkinglot\classifier\classifier_set.cpp" />
     <ClCompile Include="parkinglot\classifier\direct_nn_classifier.cpp" />
@@ -180,6 +182,7 @@
     <ClCompile Include="parkinglot\utils.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="male_female\sexutils.h" />
     <ClInclude Include="parkinglot\classifier\classifier.h" />
     <ClInclude Include="parkinglot\classifier\classifier_set.h" />
     <ClInclude Include="parkinglot\classifier\direct_nn_classifier.h" />
