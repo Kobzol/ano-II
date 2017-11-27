@@ -56,10 +56,10 @@ void DirectNNClassifier::train(const std::vector<Example>& examples)
 	this->model->train(trainingData, cv::ml::SampleTypes::ROW_SAMPLE, labels);
 }
 
-int DirectNNClassifier::predict(cv::Mat image)
+float DirectNNClassifier::predict(cv::Mat image)
 {
 	auto data = imgToData(image);
-	return static_cast<int>(this->model->predict(data));
+	return static_cast<float>(this->model->predict(data));
 }
 
 bool DirectNNClassifier::supportsFeatures()

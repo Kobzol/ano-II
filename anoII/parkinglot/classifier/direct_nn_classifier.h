@@ -10,7 +10,7 @@ public:
 	DirectNNClassifier(std::string name);
 
 	virtual void train(const std::vector<Example>& examples) override;
-	virtual int predict(cv::Mat image) override;
+	virtual float predict(cv::Mat image) override;
 	virtual bool supportsFeatures() override;
 
 protected:

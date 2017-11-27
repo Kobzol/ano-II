@@ -69,12 +69,12 @@ void TinyDNNClassifier::train(const std::vector<Example>& examples)
 	loss.print_detail(std::cerr);
 }
 
-int TinyDNNClassifier::predict(cv::Mat image)
+float TinyDNNClassifier::predict(cv::Mat image)
 {
 	std::vector<vec_t> data;
 	convert_image(image, IMG_WIDTH, IMG_HEIGHT, data);
 
-	return this->net->predict_label(data[0]);
+	return (float) this->net->predict_label(data[0]);
 }
 
 bool TinyDNNClassifier::supportsFeatures()

@@ -5,14 +5,14 @@ Classifier::Classifier(std::string name): name(name)
 
 }
 
-int Classifier::predict(const std::vector<float>& features)
+float Classifier::predict(const std::vector<float>& features)
 {
-	return 0;
+	return 0.0f;
 }
 
-int Classifier::predict(cv::Mat image)
+float Classifier::predict(cv::Mat image)
 {
-	return 0;
+	return 0.0f;
 }
 
 bool Classifier::supportsFeatures()
@@ -34,4 +34,9 @@ void Classifier::train(cv::ml::StatModel& model, const std::vector<Example>& exa
 	}
 
 	model.train(trainingData, cv::ml::SampleTypes::ROW_SAMPLE, labels);
+}
+
+std::string Classifier::getName() const
+{
+	return this->name;
 }

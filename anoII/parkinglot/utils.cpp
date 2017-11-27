@@ -172,7 +172,7 @@ std::vector<cv::Mat> extractParkingPlaces(const std::vector<Place>& places, cv::
 	return placeFrames;
 }
 
-static std::string serializeResponse(std::vector<int>& response)
+static std::string serializeResponse(std::vector<float>& response)
 {
 	std::string str;
 	for (auto r: response)
@@ -181,7 +181,7 @@ static std::string serializeResponse(std::vector<int>& response)
 	}
 	return str;
 }
-cv::Mat markDetection(const std::vector<Place>& places, cv::Mat image, ClassifierSet& set, std::vector<std::vector<int>>& responses)
+cv::Mat markDetection(const std::vector<Place>& places, cv::Mat image, ClassifierSet& set, std::vector<std::vector<float>>& responses)
 {
 	cv::Mat detected = image.clone();
 

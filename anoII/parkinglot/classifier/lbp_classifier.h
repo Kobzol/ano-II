@@ -10,7 +10,7 @@ public:
 	LBPClassifier(const std::string& name);
 
 	virtual void train(const std::vector<Example>& examples) override;
-	virtual int predict(cv::Mat image);
+	virtual float predict(cv::Mat image);
 
 	virtual bool supportsFeatures();
 

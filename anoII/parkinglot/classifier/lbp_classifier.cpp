@@ -28,9 +28,16 @@ void LBPClassifier::train(const std::vector<Example>& examples)
 	this->model->train(images, labels);
 }
 
-int LBPClassifier::predict(cv::Mat image)
+float LBPClassifier::predict(cv::Mat image)
 {
-	return this->model->predict(modifyImage(image));
+	int label;
+	double confidence;
+	this->model->predict(modifyImage(image), label, confidence);
+
+	confidence /= 150.0f;
+
+	if (label == 1) return confidence;
+	else return 1.0f - confidence;
 }
 
 bool LBPClassifier::supportsFeatures()
@@ -45,5 +52,5 @@ void LBPClassifier::save(const std::string& path)
 
 void LBPClassifier::load(const std::string& path)
 {
-	this->model->load<cv::face::LBPHFaceRecognizer>(path);
+	this->model = this->model->load<cv::face::LBPHFaceRecognizer>(path);
 }

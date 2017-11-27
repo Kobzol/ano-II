@@ -25,7 +25,7 @@ void DNNClassifier::train(const std::vector<Example>& examples)
 	
 }
 
-int DNNClassifier::predict(cv::Mat image)
+float DNNClassifier::predict(cv::Mat image)
 {
 	this->net.setInput(image);
 	return this->net.forward("output").at<float>(0, 0);

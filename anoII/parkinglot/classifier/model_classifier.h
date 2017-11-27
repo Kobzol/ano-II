@@ -28,9 +28,9 @@ public:
 	{
 		this->train(*this->model.get(), examples);
 	}
-	virtual int predict(const std::vector<float>& features) override
+	virtual float predict(const std::vector<float>& features) override
 	{
-		return static_cast<int>(this->model->predict(features));
+		return static_cast<float>(this->model->predict(features));
 	}
 
 	virtual void save(const std::string& path) override

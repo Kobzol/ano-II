@@ -8,23 +8,26 @@ void ClassifierSet::train(const std::vector<Example>& examples)
 	}
 }
 
-std::vector<int> ClassifierSet::predict(const Example& example, cv::Mat frame)
+std::vector<float> ClassifierSet::predict(const Example& example, cv::Mat frame)
 {
-	std::vector<int> responses;
+	std::vector<float> responses;
 	for (auto& classifier : this->classifiers)
 	{
+		float response = 0.0f;
 		if (classifier->supportsFeatures())
 		{
-			responses.push_back(classifier->predict(example.features));
+			response = classifier->predict(example.features);
 		}
-		else responses.push_back(classifier->predict(frame));
+		else response = classifier->predict(frame);
+
+		responses.push_back(response);
 	}
 
 	return responses;
 }
-std::vector<std::vector<int>> ClassifierSet::predictMultiple(const std::vector<std::unique_ptr<Extractor>>& extractors, const std::vector<cv::Mat>& frames)
+std::vector<std::vector<float>> ClassifierSet::predictMultiple(const std::vector<std::unique_ptr<Extractor>>& extractors, const std::vector<cv::Mat>& frames)
 {
-	std::vector<std::vector<int>> responses;
+	std::vector<std::vector<float>> responses;
 	for (auto& frame : frames)
 	{
 		Example example = Example::create(extractors, frame, -1);
@@ -33,15 +36,15 @@ std::vector<std::vector<int>> ClassifierSet::predictMultiple(const std::vector<s
 
 	return responses;
 }
-int ClassifierSet::predictClass(const std::vector<int>& response)
+int ClassifierSet::predictClass(const std::vector<float>& response)
 {
-	int results[2] = { 0 };
-	for (int r : response)
+	float sum = 0.0f;
+	for (float p : response)
 	{
-		results[r]++;
+		sum += p;
 	}
 
-	return results[0] > results[1] ? 0 : 1;
+	return sum >= ((float) response.size() * 0.5f) ? 1 : 0;
 }
 
 void ClassifierSet::load(const std::string& name)

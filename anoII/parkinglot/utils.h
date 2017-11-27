@@ -19,7 +19,7 @@ void appendDirectExamples(const std::vector<cv::Mat>& images, const std::vector<
 std::vector<cv::Mat> extractParkingPlaces(const std::vector<Place>& places, cv::Mat image);
 std::vector<cv::Mat> expandDataset(const std::vector<cv::Mat>& frames);
 
-cv::Mat markDetection(const std::vector<Place>& places, cv::Mat image, ClassifierSet& set, std::vector<std::vector<int>> &responses);
+cv::Mat markDetection(const std::vector<Place>& places, cv::Mat image, ClassifierSet& set, std::vector<std::vector<float>> &responses);
 
 void writeImages(const std::vector<cv::Mat>& images, const std::string& path);
 std::vector<cv::Mat> readImages(const std::string& path);

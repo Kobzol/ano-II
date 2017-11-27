@@ -21,6 +21,15 @@ dlib::input<dlib::matrix<pixel_type>>
 >>>>>>>>>>;
 */
 
+/* BEST
+using net_learn = dlib::loss_multiclass_log<
+dlib::fc<1,
+dlib::dropout<net_inner>>>;
+using net_predict = dlib::loss_multiclass_log<
+dlib::fc<1,
+dlib::multiply<net_inner>>>;
+*/
+
 using pixel_type = dlib::bgr_pixel;
 using net_inner = dlib::relu<dlib::fc<750,
 	dlib::max_pool<2, 2, 2, 2, dlib::relu<dlib::con<15, 5, 5, 1, 1,
@@ -28,11 +37,11 @@ using net_inner = dlib::relu<dlib::fc<750,
 	>>>>>;
 
 // CUSTOM
-using net_learn = dlib::loss_binary_log<
-	dlib::fc<1,
+using net_learn = dlib::loss_multiclass_log<
+	dlib::fc<2,
 	dlib::dropout<net_inner>>>;
-using net_predict = dlib::loss_binary_log<
-	dlib::fc<1,
+using net_predict = dlib::softmax<
+	dlib::fc<2,
 	dlib::multiply<net_inner>>>;
 
 // PAPER
@@ -53,7 +62,7 @@ public:
 	DlibClassifier(std::string name);
 
 	virtual void train(const std::vector<Example>& examples) override;
-	virtual int predict(cv::Mat image) override;
+	virtual float predict(cv::Mat image) override;
 
 	virtual bool supportsFeatures() override;
 

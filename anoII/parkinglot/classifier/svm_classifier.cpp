@@ -11,3 +11,9 @@ SvmClassifier::SvmClassifier(std::string name, int kernelType): ModelClassifier<
 	this->model->setNu(0.1);
 	this->model->setTermCriteria(crit);
 }
+
+float SvmClassifier::predict(const std::vector<float>& features)
+{
+	float dist = this->model->predict(features, cv::noArray(), cv::ml::StatModel::Flags::RAW_OUTPUT);
+	return 1.0f / (1.0f + std::exp(dist));
+}

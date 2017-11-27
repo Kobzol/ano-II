@@ -1,6 +1,13 @@
 #include "setup.h"
 
+#include <fstream>
+
 #include "utils.h"
+/*#include "extractor/sobel_extractor.h"
+#include "classifier/svm_classifier.h"
+#include "classifier/model_classifier.h"
+#include "classifier/knn_classifier.h"
+#include "classifier/lbp_classifier.h"*/
 #include "classifier/dlib_classifier.h"
 
 std::vector<std::unique_ptr<Extractor>> createExtractors(const std::vector<float>& params)
@@ -25,7 +32,9 @@ ClassifierSet createClassifiers()
 	//set.add(std::make_unique<DirectNNClassifier>("Direct NN"));
 	//set.add(std::make_unique<DNNClassifier>("DNN"));
 	//set.add(std::make_unique<TinyDNNClassifier>("TinyDNN"));
-	set.add(std::make_unique<DlibClassifier>("Dlib CNN"));
+	set.add(std::make_unique<DlibClassifier>("Dlib CNN1"));
+	set.add(std::make_unique<DlibClassifier>("Dlib CNN2"));
+	set.add(std::make_unique<DlibClassifier>("Dlib CNN3"));
 	//set.add(std::make_unique<LBPClassifier>("LBP"));
 
 	/*auto boost = std::make_unique<ModelClassifier<cv::ml::Boost>>(std::string("Boost"));
@@ -91,18 +100,21 @@ std::vector<Evaluator> testClassifiers(
 	std::vector<std::string> testPaths = loadPathFile(testPath);
 	std::vector<Evaluator> evaluators(classifiers.classifiers.size() + 1, Evaluator(groundTruth));
 
+	std::vector<std::vector<float>> probabilities(classifiers.classifiers.size());
+	
 	int diff = 0;
 	for (auto& testPath : testPaths)
 	{
 		cv::Mat image = cv::imread(testPath);
-		std::vector<cv::Mat> placeFrames = extractParkingPlaces(places, image);
-		std::vector<std::vector<int>> responses = classifiers.predictMultiple(extractors, placeFrames);
+		auto placeFrames = extractParkingPlaces(places, image);
+		auto responses = classifiers.predictMultiple(extractors, placeFrames);
 
 		for (auto& response : responses)
 		{
 			for (int c = 0; c < response.size(); c++)
 			{
-				evaluators[c].addResult(response[c]);
+				evaluators[c].addResult(classifiers.predictClass({ response[c] }));
+				probabilities[c].push_back(response[c]);
 			}
 			evaluators.back().addResult(classifiers.predictClass(response));
 		}
@@ -117,6 +129,15 @@ std::vector<Evaluator> testClassifiers(
 				cv::imshow("Detection", detected);
 				cv::waitKey(0);
 			}
+		}
+	}
+
+	for (int i = 0; i < probabilities.size(); i++)
+	{
+		std::ofstream fs("probability-" + classifiers.classifiers[i]->getName() + ".txt");
+		for (auto& prob : probabilities[i])
+		{
+			fs << prob << std::endl;
 		}
 	}
 

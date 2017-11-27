@@ -14,7 +14,7 @@ public:
 	explicit TinyDNNClassifier(std::unique_ptr<tiny_dnn::network<tiny_dnn::sequential>> net);
 
 	virtual void train(const std::vector<Example>& examples) override;
-	virtual int predict(cv::Mat image) override;
+	virtual float predict(cv::Mat image) override;
 
 	virtual bool supportsFeatures() override;
 

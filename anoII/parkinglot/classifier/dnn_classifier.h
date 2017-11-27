@@ -11,7 +11,7 @@ public:
 
 	virtual bool supportsFeatures() override;
 	virtual void train(const std::vector<Example>& examples) override;
-	virtual int predict(cv::Mat image);
+	virtual float predict(cv::Mat image);
 
 	virtual void save(const std::string& path) override;
 	virtual void load(const std::string& path) override;

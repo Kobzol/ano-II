@@ -11,6 +11,10 @@ static int dlibToClassIndex(float result)
 {
 	return result < 0.0f ? 0 : 1;
 }
+static float dlibToSigmoid(float result)
+{
+	return 1.0f / (1.0f + std::exp(result));
+}
 
 static cv::Mat transformImage(const cv::Mat& img)
 {
@@ -44,14 +48,14 @@ void DlibClassifier::train(const std::vector<Example>& examples)
 	trainer.set_max_num_epochs(100);
 	trainer.be_verbose();
 
-	std::vector<float> labels;
+	std::vector<unsigned long> labels;
 	std::vector<dlib::matrix<pixel_type>> images;
 	std::vector<cv::Mat> cvImages(examples.size());
 
 	int i = 0;
 	for (auto& example : examples)
 	{
-		labels.push_back(classIndexToDlib(example.classIndex));
+		labels.push_back(example.classIndex);
 
 		cvImages[i] = transformImage(example.image);
 
@@ -68,7 +72,7 @@ void DlibClassifier::train(const std::vector<Example>& examples)
 	{
 		trainer.train(images, labels);
 		this->learner.clean();
-		this->predictor = this->learner;
+		this->predictor.subnet() = this->learner.subnet();
 
 		std::remove(backup.c_str());
 		std::remove((backup + "_").c_str());
@@ -81,13 +85,13 @@ void DlibClassifier::train(const std::vector<Example>& examples)
 	std::cerr << "Training finished" << std::endl;
 }
 
-int DlibClassifier::predict(cv::Mat image)
+float DlibClassifier::predict(cv::Mat image)
 {
 	cv::Mat transformed = transformImage(image);
 	dlib::cv_image<pixel_type> cvImg(transformed);
 	dlib::matrix<pixel_type> mat = dlib::mat(cvImg);
 
-	return dlibToClassIndex(this->predictor(mat));
+	return dlib::mat(this->predictor(mat))(1);
 }
 
 bool DlibClassifier::supportsFeatures()
@@ -103,5 +107,6 @@ void DlibClassifier::save(const std::string& path)
 
 void DlibClassifier::load(const std::string& path)
 {
-	dlib::deserialize(path) >> this->predictor;
+	dlib::deserialize(path) >> this->learner;
+	this->predictor.subnet() = this->learner.subnet();
 }
